@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # M0: uncomment when the Cargo workspace lands. Keep the crux group —
+  # crux_core/crux_macros (and friends) are a matched set; skewed
+  # single-crate bumps break trait bounds (intrada #970).
+  # - package-ecosystem: "cargo"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #   groups:
+  #     crux:
+  #       patterns:
+  #         - "crux*"
