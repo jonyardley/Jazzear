@@ -21,6 +21,7 @@
 5. **Error-driven (Banacos pattern).** A miss triggers comparison — replay cadence ↔ missed note, or A/B the confused chord qualities — never just "wrong, next."
 6. **Honest gamification.** Streak = minutes of real work; rewards weight hard items and production (singing); SRS resurfaces weak items on decay curves.
 7. **Jazz texture.** Rootless voicings, shells, swing feel, ride patterns — not root-position block piano.
+8. **Sound before sign.** Musical visualizations (mini keyboard diagrams for voicings, guide-tone contour lines, lead-sheet bars in the Tune Workbench) appear only at the answer reveal and in review screens — never during listening/answering, which would invite reading over hearing. No engraved staff notation anywhere in the app.
 
 ## Core modes / user journeys
 

@@ -25,6 +25,7 @@ An iOS app that trains a jazz pianist's ear — hearing notes against a key, jaz
 4. **Sound has visual character.** Keys, chord qualities, and tension colors (b9, #13…) are the content — give them a consistent, learnable visual language (color/shape) that reinforces the ear learning rather than decorating it.
 5. **Errors are the curriculum.** A miss opens a comparison moment (replay/alternate the two confused sounds). Design this as the most cared-for interaction in the app — it should feel like a patient teacher, not a penalty.
 6. **Dark-mode native.** Primary contexts are trains, evening pianos, pockets. Design dark-first; light mode secondary.
+7. **Sound before sign.** Visualizations of musical content (keyboard diagrams, guide-tone contours, lead-sheet bars) appear only at the **answer reveal** and in review/progress screens — never while the user is listening or answering. The ear works first; the eye confirms. No engraved staff notation anywhere — chord symbols, mini keyboard diagrams, and simple voice-leading contour lines are the vocabulary.
 
 **Feel/mood:** late-night jazz club meets modern instrument. Warm darks, one or two rich accent hues, generous type, tactile controls. References to riff on: Teenage Engineering restraint, Moleskine/real-book texture cues, the calm of Apple Podcasts/Overcast, the focus of Endel. Avoid: cartoon mascots, arcade UI, music-school clip-art (treble clefs everywhere).
 
@@ -79,7 +80,7 @@ Walking mode: "sing the 3rd of this chord" → mic listens → tuner-like feedba
 - Must feel great one-handed on a small phone (train grip); test layouts at iPhone mini width.
 - Background audio + lock-screen controls are core, not an afterthought — the lock screen *is* a primary UI.
 - Offline-first, no accounts. One-time purchase (no paywall screens needed yet; no subscription upsell patterns).
-- Music rendering: chord symbols (G7♭9, Fmaj7♯11) and occasional lead-sheet bars — no full engraved notation.
+- Music rendering: chord symbols (G7♭9, Fmaj7♯11), mini keyboard diagrams, voice-leading contours, and occasional lead-sheet bars — no full engraved notation, and nothing notational during listening/answering (principle 7).
 
 ## Out of scope for this pass
 
@@ -89,7 +90,7 @@ Settings, purchase flow, Android/web, social/leaderboards (deliberately excluded
 
 1. A mood/direction take (2 directions max) on the "late-night jazz club × modern instrument" feel.
 2. High-fidelity mockups of Journeys 1–3 (all Pocket Session states), medium-fidelity for 4, concept sketch for 5.
-3. The visual language system for musical content: keys, chord qualities, tension colors, mastery states.
+3. The visual language system for musical content: keys, chord qualities, tension colors, mastery states — plus the two reveal-moment visualizations: a **mini keyboard diagram** (shows the actual notes of a revealed voicing — how pianists think) and a **guide-tone contour** (two dots stepping through the 3rd/7th voice-leading of a progression). Both appear only post-answer, per principle 7.
 4. A clickable flow of the Pocket Session loop if possible — the pacing/choreography (context → question → gap → reveal) is the product; even a rough animated sequence of that rhythm is more valuable than static polish.
 
 ## Background docs

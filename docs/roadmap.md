@@ -39,6 +39,8 @@ Sonofield for a jazz user on its own.
 - [ ] Decomposition exercises (bass → 3rd → 7th)
 - [ ] Guide-tone lines + ii-V-I recognition (major/minor; resolved vs
       deceptive dominants)
+- [ ] Reveal-moment visual components: mini keyboard diagram (voicings) +
+      guide-tone contour — post-answer only (sound before sign)
 
 ## Phase 3 — Cells & tunes: Level 6 + Tune Workbench
 
