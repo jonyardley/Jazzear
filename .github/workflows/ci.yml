@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  # No branch filter: stacked PRs (target = feature branch) need CI too —
+  # otherwise they sit at "no checks reported" until rebased onto main.
+  pull_request:
+
+# Cancel superseded runs on PRs; let every main run finish.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    name: Docs sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No merge-conflict markers
+        run: |
+          if grep -rn --include='*.md' -E '^(<{7} |>{7} )' .; then
+            echo 'Merge-conflict markers found'; exit 1
+          fi
+      - name: Internal doc links resolve
+        run: python3 .github/scripts/check_doc_links.py
+
+  # ── The one required status check ──────────────────────────────────────
+  # Branch protection requires exactly this job ("CI OK") and nothing else.
+  # M0 and beyond: add real jobs (fmt, clippy, test, iOS build) and list
+  # them in `needs` — protection never changes when jobs are added/renamed.
+  ci-ok:
+    name: CI OK
+    runs-on: ubuntu-latest
+    needs: [docs]
+    if: always()
+    steps:
+      - name: All needed jobs succeeded
+        run: |
+          if [ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}" = "true" ]; then
+            echo 'A required job failed, was cancelled, or was skipped'; exit 1
+          fi

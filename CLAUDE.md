@@ -301,7 +301,13 @@ Match ceremony to scope. Default to less; escalate only when work demands it.
 
 1. Check `docs/roadmap.md` — work should map to a roadmap item; no item =
    discuss first.
-2. Never push to main. Feature branch + PR.
+2. Never push to main — it's ruleset-protected (PRs only, no bypass, even
+   for admins). Feature branch + PR; **squash-merge only**, and the PR title
+   + body become the commit message, so write them as the permanent record.
+   Merged branches auto-delete. Auto-merge is enabled — set it once CI is
+   green rather than polling. The single required check is **"CI OK"**
+   (`.github/workflows/ci.yml`): when adding CI jobs, wire them into
+   `ci-ok`'s `needs` list; never touch branch protection.
 3. Keep both docs and code honest: update `docs/roadmap.md` on completion,
    and update this file when architecture/patterns change.
 
