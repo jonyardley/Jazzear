@@ -9,18 +9,21 @@ Workflow → Always).
 - [x] Pedagogy + market research (`docs/RESEARCH.md`)
 - [x] Product concept (`docs/CONCEPT.md`)
 - [x] Design brief for Claude Design (`docs/DESIGN_BRIEF.md`)
-- [ ] Design exploration: Pocket Session journey mockups (Claude Design)
-- [ ] Scaffold Crux workspace: `jazzear-core`, `jazzear-ffi`, iOS app shell,
-      justfile, CI (fmt/clippy/test)
-- [ ] Spike: end-to-end audio loop — core emits `PlayScore` → shell renders
-      cadence + note on AVAudioEngine sampler → background audio + lock-screen
-      controls. **This is the make-or-break spike; do it before building
-      features.**
+- [x] Design exploration: Pocket Session journeys, tokens, choreography
+      prototype (`design/` — see `design/README.md`; direction 1a "Blue Hour
+      Console")
+- [x] MVP implementation plan (`docs/specs/mvp-plan.md` — milestones M0–M6)
+- [ ] M0 — Scaffold: Crux workspace, xcodegen iOS project, justfile, CI,
+      `Theme.swift` from the design token sheet, bindings walking skeleton
+- [ ] M1 — Audio spike: `PlayScore` → AVAudioEngine sampler, background
+      audio, Now Playing + remote commands. **Make-or-break; go/no-go gate
+      before any feature work** (exit criteria in the plan)
 
 ## Phase 1 — MVP: Pocket Session, Levels 0–2
 
 Functional degree training, hands-free. Beats Functional Ear Trainer +
-Sonofield for a jazz user on its own.
+Sonofield for a jazz user on its own. Build order and decisions:
+`docs/specs/mvp-plan.md` (milestones M2–M6).
 
 - [ ] Theory engine v1: keys, cadences, scale degrees (major/minor,
       chromatic)

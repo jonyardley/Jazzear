@@ -33,8 +33,12 @@ drives what the user practices each day.
   SRS-based, no XP/lives/leagues.
 - **Offline-first, no accounts, one-time purchase.** No server, no sign-in.
 
-The design brief for the UX is `docs/DESIGN_BRIEF.md`; mockups from Claude
-Design land in `design/` and become the reference once they exist.
+The design brief for the UX is `docs/DESIGN_BRIEF.md`. **The design reference
+is `design/`** (Claude Design handoff — direction 1a "Blue Hour Console"):
+`design/README.md` carries the token sheet, screen inventory, and the Pocket
+Session state machine whose timings are **product spec**, not illustration.
+The active implementation plan is `docs/specs/mvp-plan.md`. Design tokens
+map 1:1 into `Theme.swift` (`Jazzear*` namespaces) at scaffold time.
 
 ## Project Structure (planned)
 

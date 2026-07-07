@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e0c10;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh}
+a{color:#a58fe0}a:hover{color:#c3b2f0}
+@keyframes eqbar{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes softpulse{0%,100%{opacity:.55}50%{opacity:1}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:36px 20px 60px;box-sizing:border-box">
+
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px">
+    <span style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#a58fe0;color:#17141c;border-radius:4px">FLOW</span>
+    <span style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">Pocket Session — the choreography, live</span>
+  </div>
+  <div style="font:400 12px/1.5 system-ui,sans-serif;color:#9b93ab;margin-bottom:26px;max-width:520px;text-align:center">Direction <b style="color:#f2eef7">1a · Blue Hour Console</b>. Sound on — press play. Context → question → thinking gap → reveal, then it waits for your <i>Got it / Missed it</i>. Flip <b style="color:#f2eef7">Auto-continue</b> on to let it self-drive like a podcast — item 4 then scripts a miss so you can feel the Banacos comparison loop. Tap <i>Missed it</i> on anything to hear it too.</div>
+
+  <div style="display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;justify-content:center">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Pocket Session" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box;position:relative">
+
+      <!-- ══ PRE-SESSION ══ -->
+      <sc-if value="{{ isPre }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <div style="font:700 13px 'Space Grotesk',sans-serif;letter-spacing:.22em;color:#f2eef7">CHANGES</div>
+            <div style="font:500 12px 'Space Grotesk',sans-serif;color:#6f6880">TUE JUL 7</div>
+          </div>
+          <div style="margin-top:44px">
+            <div style="font:500 13px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">TODAY</div>
+            <div style="font:600 30px/1.15 'Space Grotesk',sans-serif;color:#f2eef7;margin-top:10px;letter-spacing:-0.01em">2 min<span style="color:#6f6880"> · </span>Rung 4</div>
+            <div style="font:500 17px/1.4 'Newsreader',serif;font-style:italic;color:#a58fe0;margin-top:6px">Chord qualities · demo queue, 5 items</div>
+          </div>
+          <div style="flex:1;display:flex;align-items:center;justify-content:center">
+            <div onClick="{{ onPlay }}" style="width:190px;height:190px;border-radius:50%;background:radial-gradient(circle at 50% 42%, #2b2436, #211d29 70%);box-shadow:0 0 60px rgba(165,143,224,.28), inset 0 1px 0 rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border:1px solid rgba(165,143,224,.35);cursor:pointer" style-hover="box-shadow:0 0 80px rgba(165,143,224,.45), inset 0 1px 0 rgba(255,255,255,.1)">
+              <svg width="52" height="56" viewBox="0 0 52 56"><path d="M6 4 L48 28 L6 52 Z" fill="#a58fe0"></path></svg>
+            </div>
+          </div>
+          <div onClick="{{ onToggleAuto }}" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-radius:16px;background:#211d29;margin-bottom:18px;cursor:pointer">
+            <div>
+              <div style="font:600 14px 'Space Grotesk',sans-serif;color:{{ autoLabelColor }}">Auto-continue</div>
+              <div style="font:400 11px system-ui;color:#6f6880;margin-top:2px">keep rolling after each reveal — for pros. Off = session waits for your tap.</div>
+            </div>
+            <div style="width:44px;height:26px;border-radius:99px;background:{{ autoTrackBg }};position:relative;flex:none;transition:background .2s">
+              <div style="position:absolute;top:3px;left:{{ autoKnobLeft }};width:20px;height:20px;border-radius:50%;background:#f2eef7;transition:left .2s"></div>
+            </div>
+          </div>
+          <div style="text-align:center;font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#6f6880;padding-bottom:8px">HEADPHONES ON · PHONE AWAY</div>
+        </div>
+      </sc-if>
+
+      <!-- ══ IN SESSION ══ -->
+      <sc-if value="{{ isSession }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;flex:1">
+          <!-- header -->
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+            <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">{{ counterText }}</div>
+            <div onClick="{{ onPauseToggle }}" style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center;cursor:pointer">{{ pauseGlyph }}</div>
+          </div>
+
+          <!-- center canvas -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px">
+
+            <sc-if value="{{ isPaused }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">PAUSED</div>
+              <div style="font:500 26px/1.3 'Newsreader',serif;font-style:italic;color:#f2eef7;text-align:center">take your time —<br>E♭ will still be here</div>
+              <div onClick="{{ onPauseToggle }}" style="margin-top:10px;padding:12px 28px;border-radius:99px;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7;cursor:pointer">Resume</div>
+            </sc-if>
+
+            <sc-if value="{{ isContext }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">LISTEN</div>
+              {{ eqBars }}
+              <div style="font:500 18px 'Newsreader',serif;font-style:italic;color:#f2eef7">establishing E♭ major</div>
+            </sc-if>
+
+            <sc-if value="{{ isQuestion }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">QUALITY OF THIS CHORD</div>
+              <div style="width:150px;height:150px;border-radius:50%;border:1px solid rgba(165,143,224,.4);display:flex;align-items:center;justify-content:center;animation:softpulse 1.6s ease-in-out infinite">
+                <span style="font:500 64px 'Newsreader',serif;font-style:italic;color:#a58fe0">?</span>
+              </div>
+              <div style="font:400 13px 'Space Grotesk',sans-serif;color:#6f6880">playing…</div>
+            </sc-if>
+
+            <sc-if value="{{ isGap }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">NAME IT — OUT LOUD OR IN YOUR HEAD</div>
+              {{ gapRing }}
+              <div style="font:400 13px 'Space Grotesk',sans-serif;color:#6f6880">answer coming</div>
+            </sc-if>
+
+            <sc-if value="{{ isReveal }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">IT WAS</div>
+              <div style="font:500 84px/1 'Newsreader',serif;font-style:italic;color:#f2eef7;letter-spacing:-0.02em">{{ revealSym }}<span style="color:{{ revealColor }}">{{ revealExt }}</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:{{ revealColor }};box-shadow:0 0 14px {{ revealColor }}"></div><span style="font:500 16px 'Newsreader',serif;font-style:italic;color:#9b93ab">{{ revealLabel }}</span></div>
+              <div style="display:flex;position:relative;margin-top:12px;background:#0e0c10;padding:5px;border-radius:8px">
+                <sc-for list="{{ kbWhite }}" as="k" hint-placeholder-count="21">
+                  <div style="width:16px;height:58px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative">
+                    <sc-if value="{{ k.on }}" hint-placeholder-val="{{ false }}">
+                      <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:{{ revealColor }}"></div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+                <sc-for list="{{ kbBlack }}" as="k" hint-placeholder-count="15">
+                  <div style="position:absolute;top:5px;left:{{ k.left }};width:10px;height:36px;background:#17141c;border-radius:0 0 2px 2px;z-index:2;margin-left:5px">
+                    <sc-if value="{{ k.on }}" hint-placeholder-val="{{ false }}">
+                      <div style="position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:{{ revealColor }}"></div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font:400 12px 'Space Grotesk',sans-serif;color:#6f6880;margin-top:6px">{{ revealHint }}</div>
+            </sc-if>
+
+            <sc-if value="{{ isCompare }}" hint-placeholder-val="{{ false }}">
+              <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">HEAR THE DIFFERENCE</div>
+              <div style="display:flex;gap:14px">
+                <div style="width:140px;padding:26px 0;border-radius:20px;text-align:center;background:#211d29;border:1px solid {{ compareABorder }};box-shadow:{{ compareAShadow }}">
+                  <div style="font:500 34px 'Newsreader',serif;font-style:italic;color:#f2eef7">Am7♭5</div>
+                  <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#b07fae;margin-top:6px">HALF-DIM</div>
+                </div>
+                <div style="width:140px;padding:26px 0;border-radius:20px;text-align:center;background:#211d29;border:1px solid {{ compareBBorder }};box-shadow:{{ compareBShadow }}">
+                  <div style="font:500 34px 'Newsreader',serif;font-style:italic;color:#f2eef7">A°7</div>
+                  <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#8b8fa3;margin-top:6px">DIM 7</div>
+                </div>
+              </div>
+              <div style="font:500 16px 'Newsreader',serif;font-style:italic;color:#a58fe0">hear the seventh drop a half step</div>
+              <div onClick="{{ onCompareDone }}" style="margin-top:8px;padding:12px 28px;border-radius:99px;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7;cursor:pointer">I hear it — continue</div>
+            </sc-if>
+          </div>
+
+          <!-- answer zones -->
+          <div style="display:flex;gap:12px;opacity:{{ zonesOpacity }};transition:opacity .3s">
+            <div onClick="{{ onGot }}" style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer" style-hover="background:#26212f">
+              <div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div>
+              <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×1</div>
+            </div>
+            <div onClick="{{ onMissed }}" style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer" style-hover="background:#26212f">
+              <div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div>
+              <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×2</div>
+            </div>
+          </div>
+          <!-- progress -->
+          <div style="height:3px;border-radius:2px;background:#211d29;margin-top:18px;overflow:hidden"><div style="width:{{ progressPct }};height:100%;background:#a58fe0;transition:width .5s"></div></div>
+        </div>
+      </sc-if>
+
+      <!-- ══ RECAP ══ -->
+      <sc-if value="{{ isRecap }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;flex:1">
+          <div style="font:500 13px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab;margin-top:8px">SESSION COMPLETE</div>
+          <div style="font:500 34px/1.2 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:12px">Nice ears tonight.</div>
+          <div style="display:flex;flex-direction:column;gap:0;margin-top:34px">
+            <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Got</span>
+              <span style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">4 of 5</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Worked on</span>
+              <span style="font:600 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7♭5 <span style="color:#6f6880">vs</span> dim7</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Due tomorrow</span>
+              <span style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">9 reviews</span>
+            </div>
+          </div>
+          <div style="flex:1"></div>
+          <div style="padding:20px;border-radius:20px;background:#211d29;border:1px solid rgba(165,143,224,.3)">
+            <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#a58fe0">TONIGHT AT THE PIANO</div>
+            <div style="font:500 17px/1.45 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:8px">Play Am7♭5 → A°7 slowly. Listen for the seventh dropping.</div>
+          </div>
+          <div onClick="{{ onRestart }}" style="margin-top:16px;padding:16px;border-radius:99px;text-align:center;background:#211d29;font:600 15px 'Space Grotesk',sans-serif;color:#9b93ab;cursor:pointer">Replay the demo</div>
+        </div>
+      </sc-if>
+    </div>
+  </x-import>
+
+  <!-- choreography strip -->
+  <div style="width:300px;display:flex;flex-direction:column;gap:14px;padding-top:8px">
+    <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab">THE RHYTHM OF ONE ITEM</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:{{ segContextBg }};border:1px solid {{ segContextBorder }}">
+        <span style="font:600 11px ui-monospace,monospace;color:#6f6880">01</span>
+        <div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Context</div><div style="font:400 11px system-ui;color:#9b93ab">cadence establishes the key · ~3s</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:{{ segQuestionBg }};border:1px solid {{ segQuestionBorder }}">
+        <span style="font:600 11px ui-monospace,monospace;color:#6f6880">02</span>
+        <div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Question</div><div style="font:400 11px system-ui;color:#9b93ab">the chord, in jazz voicing · ~2s</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:{{ segGapBg }};border:1px solid {{ segGapBorder }}">
+        <span style="font:600 11px ui-monospace,monospace;color:#6f6880">03</span>
+        <div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Thinking gap</div><div style="font:400 11px system-ui;color:#9b93ab">silence, on purpose · 4s, configurable</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:{{ segRevealBg }};border:1px solid {{ segRevealBorder }}">
+        <span style="font:600 11px ui-monospace,monospace;color:#6f6880">04</span>
+        <div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Reveal</div><div style="font:400 11px system-ui;color:#9b93ab">symbol + keyboard shape; self-report · then next</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:{{ segCompareBg }};border:1px solid {{ segCompareBorder }}">
+        <span style="font:600 11px ui-monospace,monospace;color:#a58fe0">↺</span>
+        <div><div style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">On a miss: comparison</div><div style="font:400 11px system-ui;color:#9b93ab">A/B the confused pair until it clicks</div></div>
+      </div>
+    </div>
+    <div style="font:400 11.5px/1.6 system-ui;color:#6f6880">Everything here works eyes-free in the real app — the reveal is spoken there, grading is an earbud tap. This demo keeps it silent-but-audible: chords only, no voice.</div>
+    <a href="Changes - Direction Take.dc.html" style="font:500 12px 'Space Grotesk',sans-serif">← all screens &amp; the visual language sheet</a>
+  </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 900, &quot;height&quot;: 1050}, &quot;gapSeconds&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 4, &quot;min&quot;: 2, &quot;max&quot;: 8, &quot;step&quot;: 1, &quot;unit&quot;: &quot;s&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Pacing&quot;}, &quot;autoContinue&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Pacing&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'pre', // pre | session | recap
+    phase: 'context', // context | question | gap | reveal | compare
+    paused: false,
+    itemIdx: 0,
+    gapPct: 0,
+    compareA: true,
+    result: [],
+  };
+
+  ITEMS = [
+    { sym: 'E♭maj7', ext: '', say: 'E flat, major seven', color: '#d9a854', label: 'major seven — at rest', root: 51, iv: [0,4,7,11] },
+    { sym: 'Cm7', ext: '', say: 'C, minor seven', color: '#7d99c9', label: 'minor seven — the six chord', root: 48, iv: [0,3,7,10] },
+    { sym: 'G7', ext: '♭9', say: 'G seven, flat nine', color: '#cf7a52', label: 'dominant, flat nine', root: 43, iv: [0,4,7,10,13] },
+    { sym: 'Am7♭5', ext: '', say: 'A, minor seven flat five', color: '#b07fae', label: 'half-diminished', root: 45, iv: [0,3,6,10], forceMiss: true },
+    { sym: 'Fm7', ext: '', say: 'F, minor seven', color: '#7d99c9', label: 'minor seven — the two chord', root: 41, iv: [0,3,7,10] },
+  ];
+
+  // ── audio ──
+  ensureCtx() {
+    if (!this.ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AC();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0.9;
+      const lp = this.ctx.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 2400; lp.Q.value = 0.4;
+      this.master.connect(lp); lp.connect(this.ctx.destination);
+    }
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+    return this.ctx;
+  }
+
+  playChord(rootMidi, intervals, when, dur) {
+    const ctx = this.ensureCtx();
+    const t0 = ctx.currentTime + when;
+    const n = intervals.length;
+    intervals.forEach((semi, i) => {
+      const midi = rootMidi + semi;
+      const f = 440 * Math.pow(2, (midi - 69) / 12);
+      const t = t0 + i * 0.035; // gentle roll
+      [1, 2].forEach((harm) => {
+        const o = ctx.createOscillator();
+        o.type = harm === 1 ? 'triangle' : 'sine';
+        o.frequency.value = f * harm;
+        const g = ctx.createGain();
+        const peak = (harm === 1 ? 0.32 : 0.06) / Math.sqrt(n);
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(peak, t + 0.015);
+        g.gain.exponentialRampToValueAtTime(peak * 0.5, t + dur * 0.45);
+        g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+        o.connect(g); g.connect(this.master);
+        o.start(t); o.stop(t + dur + 0.05);
+      });
+    });
+  }
+
+  playCadence(when) {
+    // ii–V–I in E♭: Fm7 → B♭7 → E♭maj7
+    this.playChord(41, [0,3,7,10], when, 1.0);
+    this.playChord(46, [0,4,7,10], when + 0.95, 1.0);
+    this.playChord(39, [0,4,7,11,16], when + 1.9, 1.5);
+  }
+
+  // ── pausable timer ──
+  after(ms, fn) {
+    this.clearTimer();
+    this.pending = fn;
+    this.pendingAt = Date.now() + ms;
+    this.timer = setTimeout(() => { this.pending = null; fn(); }, ms);
+  }
+  clearTimer() { if (this.timer) { clearTimeout(this.timer); this.timer = null; } }
+
+  componentWillUnmount() {
+    this.clearTimer();
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.cmpInt) clearInterval(this.cmpInt);
+    if (this.ctx) this.ctx.close();
+  }
+
+  // ── flow ──
+  start = () => {
+    this.ensureCtx();
+    this.setState({ screen: 'session', itemIdx: 0, result: [] });
+    this.runContext(0);
+  };
+
+  runContext(idx) {
+    this.setState({ phase: 'context', itemIdx: idx, paused: false });
+    this.playCadence(0.1);
+    this.after(3600, () => this.runQuestion());
+  }
+
+  runQuestion() {
+    const item = this.ITEMS[this.state.itemIdx];
+    this.setState({ phase: 'question' });
+    this.playChord(item.root, item.iv, 0.15, 2.2);
+    this.after(2600, () => this.runGap());
+  }
+
+  runGap() {
+    this.setState({ phase: 'gap', gapPct: 0 });
+    const dur = (this.props.gapSeconds ?? 4) * 1000, t0 = Date.now();
+    const tick = () => {
+      if (this.state.phase !== 'gap' || this.state.paused) return;
+      const p = Math.min(1, (Date.now() - t0) / dur);
+      this.setState({ gapPct: p });
+      if (p < 1) this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+    this.after(dur, () => this.runReveal());
+  }
+
+  runReveal() {
+    const item = this.ITEMS[this.state.itemIdx];
+    this.setState({ phase: 'reveal' });
+    this.playChord(item.root, item.iv, 0.1, 1.6);
+    // auto-continue only if enabled (pro mode) — otherwise the session waits for a tap
+    if (this.isAuto()) this.after(5200, () => (item.forceMiss ? this.miss() : this.got()));
+    else this.clearTimer();
+  }
+
+  isAuto() {
+    return this.state.auto ?? (this.props.autoContinue ?? false);
+  }
+
+  toggleAuto = () => {
+    this.setState({ auto: !this.isAuto() });
+  };
+
+  got = () => {
+    if (this.state.phase !== 'reveal') return;
+    this.clearTimer();
+    this.advance(true);
+  };
+
+  miss = () => {
+    if (this.state.phase !== 'reveal') return;
+    this.clearTimer();
+    this.runCompare();
+  };
+
+  runCompare() {
+    this.setState({ phase: 'compare', compareA: true });
+    const m7b5 = [0,3,6,10], dim7 = [0,3,6,9];
+    let a = true;
+    const playSide = (isA) => this.playChord(45, isA ? m7b5 : dim7, 0.05, 1.4);
+    playSide(true);
+    this.cmpInt = setInterval(() => {
+      if (this.state.paused || this.state.phase !== 'compare') return;
+      a = !a;
+      this.setState({ compareA: a });
+      playSide(a);
+    }, 1700);
+  }
+
+  compareDone = () => {
+    if (this.cmpInt) { clearInterval(this.cmpInt); this.cmpInt = null; }
+    this.advance(false);
+  };
+
+  advance(gotIt) {
+    const next = this.state.itemIdx + 1;
+    this.setState({ result: [...this.state.result, gotIt] });
+    if (next >= this.ITEMS.length) {
+      this.setState({ screen: 'recap' });
+    } else {
+      this.runContext(next);
+    }
+  }
+
+  pauseToggle = () => {
+    if (this.state.paused) {
+      this.setState({ paused: false });
+      const remaining = Math.max(300, this.pausedRemaining || 300);
+      if (this.pausedFn) this.after(remaining, this.pausedFn);
+      if (this.ctx) this.ctx.resume();
+      if (this.state.phase === 'gap') this.runGap();
+    } else {
+      this.pausedRemaining = this.pendingAt ? this.pendingAt - Date.now() : 0;
+      this.pausedFn = this.pending;
+      this.clearTimer();
+      if (this.raf) cancelAnimationFrame(this.raf);
+      if (this.ctx) this.ctx.suspend();
+      this.setState({ paused: true });
+    }
+  };
+
+  restart = () => {
+    if (this.cmpInt) { clearInterval(this.cmpInt); this.cmpInt = null; }
+    this.clearTimer();
+    this.setState({ screen: 'pre', phase: 'context', itemIdx: 0, paused: false, result: [] });
+  };
+
+  renderVals() {
+    const s = this.state;
+    const inSession = s.screen === 'session';
+    const ph = (name) => inSession && !s.paused && s.phase === name;
+    const item = this.ITEMS[s.itemIdx] || this.ITEMS[0];
+
+    // gap countdown ring
+    const R = 66, C = 2 * Math.PI * R;
+    const gapRing = React.createElement('svg', { width: 150, height: 150, key: 'ring' },
+      React.createElement('circle', { cx: 75, cy: 75, r: R, fill: 'none', stroke: '#211d29', strokeWidth: 5 }),
+      React.createElement('circle', {
+        cx: 75, cy: 75, r: R, fill: 'none', stroke: '#a58fe0', strokeWidth: 5,
+        strokeLinecap: 'round', strokeDasharray: C,
+        strokeDashoffset: C * s.gapPct,
+        transform: 'rotate(-90 75 75)',
+      })
+    );
+
+    // eq bars for context phase
+    const eqBars = React.createElement('div', { style: { display: 'flex', gap: 7, alignItems: 'center', height: 76 }, key: 'eq' },
+      [0.9, 0.5, 1.2, 0.7, 1.05, 0.6, 0.95].map((d, i) =>
+        React.createElement('div', {
+          key: i,
+          style: { width: 7, height: 64, borderRadius: 4, background: '#a58fe0', opacity: 0.85, transformOrigin: 'center', animation: 'eqbar ' + d + 's ease-in-out infinite' },
+        })
+      )
+    );
+
+    const pauseGlyph = s.paused
+      ? React.createElement('svg', { width: 13, height: 15, viewBox: '0 0 13 15' }, React.createElement('path', { d: 'M1 1 L12 7.5 L1 14 Z', fill: '#9b93ab' }))
+      : React.createElement('svg', { width: 12, height: 14, viewBox: '0 0 12 14' },
+          React.createElement('rect', { x: 0, y: 0, width: 4, height: 14, rx: 1.5, fill: '#9b93ab' }),
+          React.createElement('rect', { x: 8, y: 0, width: 4, height: 14, rx: 1.5, fill: '#9b93ab' }));
+
+    // mini keyboard diagram (reveal only — "sound before sign")
+    const notes = item.iv.map((semi) => item.root + semi);
+    const kb = { whites: [], blacks: [] };
+    const wOff = [0, 2, 4, 5, 7, 9, 11], bOff = [1, 3, 6, 8, 10], bAfter = [0, 1, 3, 4, 5];
+    for (let o = 0; o < 3; o++) {
+      const base = 36 + o * 12; // C2, C3, C4
+      wOff.forEach((off) => kb.whites.push({ on: notes.includes(base + off) }));
+      bAfter.forEach((i, j) => kb.blacks.push({ left: ((o * 7 + i + 1) * 16 - 5) + 'px', on: notes.includes(base + bOff[j]) }));
+    }
+
+    const on = 'rgba(165,143,224,.14)', onB = 'rgba(165,143,224,.55)', off = '#17141c', offB = 'rgba(255,255,255,.08)';
+    const seg = (name) => inSession && s.phase === name;
+
+    return {
+      isPre: s.screen === 'pre',
+      isSession: inSession,
+      isRecap: s.screen === 'recap',
+      isPaused: inSession && s.paused,
+      isContext: ph('context'),
+      isQuestion: ph('question'),
+      isGap: ph('gap'),
+      isReveal: ph('reveal'),
+      isCompare: ph('compare'),
+      counterText: (s.itemIdx + 1) + ' / 5 · demo',
+      autoOn: this.isAuto(),
+      autoKnobLeft: this.isAuto() ? '22px' : '3px',
+      autoTrackBg: this.isAuto() ? '#a58fe0' : '#2b2436',
+      autoLabelColor: this.isAuto() ? '#f2eef7' : '#9b93ab',
+      revealHint: this.isAuto() ? 'auto-continues in a moment — tap to grade yourself' : 'session waits for you — tap or earbud-tap to grade',
+      onToggleAuto: this.toggleAuto,
+      revealSym: item.sym, revealExt: item.ext || '', revealColor: item.color, revealLabel: item.label,
+      kbWhite: kb.whites, kbBlack: kb.blacks,
+      compareABorder: s.compareA ? onB : 'rgba(255,255,255,.06)',
+      compareBBorder: !s.compareA ? onB : 'rgba(255,255,255,.06)',
+      compareAShadow: s.compareA ? '0 0 24px rgba(176,127,174,.35)' : 'none',
+      compareBShadow: !s.compareA ? '0 0 24px rgba(139,143,163,.35)' : 'none',
+      zonesOpacity: s.phase === 'reveal' && !s.paused ? 1 : 0.25,
+      progressPct: Math.round((s.itemIdx / 5) * 100) + '%',
+      gapRing, eqBars, pauseGlyph,
+      segContextBg: seg('context') ? on : off, segContextBorder: seg('context') ? onB : offB,
+      segQuestionBg: seg('question') ? on : off, segQuestionBorder: seg('question') ? onB : offB,
+      segGapBg: seg('gap') ? on : off, segGapBorder: seg('gap') ? onB : offB,
+      segRevealBg: seg('reveal') ? on : off, segRevealBorder: seg('reveal') ? onB : offB,
+      segCompareBg: seg('compare') ? on : off, segCompareBorder: seg('compare') ? onB : offB,
+      onPlay: this.start,
+      onPauseToggle: this.pauseToggle,
+      onGot: this.got,
+      onMissed: this.miss,
+      onCompareDone: this.compareDone,
+      onRestart: this.restart,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

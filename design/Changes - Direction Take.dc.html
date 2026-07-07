@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500;1,6..72,600&family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e0c10;font-family:system-ui,sans-serif}
+a{color:#a58fe0}a:hover{color:#c3b2f0}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(255,255,255,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#f2eef7;color:#17141c;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#f2eef7}
+.dv-sub{font:400 12px/1.5 system-ui,sans-serif;color:rgba(242,238,247,.55);margin:0 0 24px;max-width:760px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(255,255,255,.12);color:#f2eef7;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11.5px/1.3 system-ui,sans-serif;color:rgba(242,238,247,.6)}
+.dv-card{max-width:100%;border:1px solid rgba(255,255,255,.09);border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,.5);overflow:hidden}
+.dv-opt:target .dv-oid{background:#a58fe0;color:#17141c}
+.dv-next{margin:26px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(242,238,247,.5)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t4">
+<div class="dv-thd"><a class="dv-tid" href="#t4">4</a><span class="dv-tname">Brief v0.2 — "Sound before sign" + the two reveal-moment components</span></div>
+<p class="dv-sub">Audit: the existing states already comply with principle 7 — nothing pitch-shaped appears while listening or answering (the listening bars are level meters, not notation; there's no staff anywhere). New here: the <b style="color:#f2eef7">mini keyboard diagram</b> and <b style="color:#f2eef7">guide-tone contour</b>, in the system sheet (<a class="dv-oid" href="#4a">4a</a>) and in-situ at reveal (<a class="dv-oid" href="#4b">4b</a>, <a class="dv-oid" href="#4c">4c</a>). The keyboard is also live in the <a href="Pocket Session Flow.dc.html">flow prototype</a>'s reveal now.</p>
+<div class="dv-opts">
+
+<!-- ═══ 4a — REVEAL COMPONENTS SHEET ═══ -->
+<div class="dv-opt" id="4a">
+<div class="dv-olabel"><a class="dv-oid" href="#4a">4a</a>System sheet addendum — reveal-moment components</div>
+<div class="dv-card" style="width:860px;background:#17141c;padding:34px;box-sizing:border-box">
+  <div style="display:flex;flex-direction:column;gap:28px">
+    <div>
+      <div style="font:700 20px 'Space Grotesk',sans-serif;color:#f2eef7">Sound before sign — where visuals are allowed</div>
+      <div style="font:400 12.5px/1.6 system-ui;color:#9b93ab;margin-top:6px;max-width:680px">Musical visualization appears <b style="color:#f2eef7">only at the answer reveal</b> and in review/progress surfaces — never while listening or answering. Vocabulary: chord symbols, mini keyboard diagrams, voice-leading contours. No engraved staff notation, ever.</div>
+    </div>
+
+    <div style="display:flex;gap:28px">
+      <div style="flex:1">
+        <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-bottom:12px">MINI KEYBOARD DIAGRAM — "THE SHAPE YOU'D GRAB"</div>
+        <div style="padding:22px;border-radius:14px;background:#211d29">
+          <div style="display:flex;justify-content:center;margin-bottom:6px"><span style="font:500 26px 'Newsreader',serif;font-style:italic;color:#f2eef7">G7<span style="color:#cf7a52">♭9</span></span></div>
+          <div style="display:flex;position:relative;background:#0e0c10;padding:6px;border-radius:8px;width:348px;margin:0 auto">
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#cf7a52"></div></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#cf7a52"></div></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#cf7a52"></div></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="width:24px;height:76px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+            <div style="position:absolute;top:6px;left:23px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:47px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:95px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:119px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:143px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:191px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:215px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:263px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+            <div style="position:absolute;top:6px;left:287px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2;box-shadow:inset 0 -14px 0 #cf7a52"></div>
+            <div style="position:absolute;top:6px;left:311px;width:14px;height:48px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          </div>
+          <div style="font:400 12px/1.6 system-ui;color:#9b93ab;margin-top:12px;text-align:center">rootless, left hand — B · E · F · A♭. Dots take the quality hue.<br><span style="color:#6f6880">appears ~400ms after the symbol, at reveal only</span></div>
+        </div>
+      </div>
+
+      <div style="flex:1">
+        <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-bottom:12px">GUIDE-TONE CONTOUR — "WHY IT SOUNDS THAT WAY"</div>
+        <div style="padding:22px;border-radius:14px;background:#211d29">
+          <div style="display:flex;justify-content:center;margin-bottom:2px"><span style="font:500 26px 'Newsreader',serif;font-style:italic;color:#f2eef7">ii–V–I <span style="color:#9b93ab;font-size:18px">in C</span></span></div>
+          <svg width="330" height="130" viewBox="0 0 330 130" style="display:block;margin:0 auto">
+            <line x1="55" y1="26" x2="165" y2="40" stroke="#a58fe0" stroke-width="2.5"></line>
+            <line x1="165" y1="40" x2="275" y2="40" stroke="#4a4458" stroke-width="2.5"></line>
+            <line x1="55" y1="74" x2="165" y2="74" stroke="#4a4458" stroke-width="2.5"></line>
+            <line x1="165" y1="74" x2="275" y2="88" stroke="#a58fe0" stroke-width="2.5"></line>
+            <circle cx="55" cy="26" r="7" fill="#ece4d3"></circle>
+            <circle cx="165" cy="40" r="7" fill="#a58fe0"></circle>
+            <circle cx="275" cy="40" r="7" fill="#ece4d3"></circle>
+            <circle cx="55" cy="74" r="7" fill="#ece4d3"></circle>
+            <circle cx="165" cy="74" r="7" fill="#ece4d3"></circle>
+            <circle cx="275" cy="88" r="7" fill="#a58fe0"></circle>
+            <text x="42" y="30" text-anchor="end" fill="#9b93ab" style="font:500 12px 'Space Grotesk',sans-serif">C</text>
+            <text x="42" y="78" text-anchor="end" fill="#9b93ab" style="font:500 12px 'Space Grotesk',sans-serif">F</text>
+            <text x="110" y="24" text-anchor="middle" fill="#a58fe0" style="font:600 11px 'Space Grotesk',sans-serif">½ step</text>
+            <text x="222" y="92" text-anchor="middle" fill="#a58fe0" style="font:600 11px 'Space Grotesk',sans-serif">½ step</text>
+            <text x="55" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">Dm7</text>
+            <text x="165" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">G7</text>
+            <text x="275" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">Cmaj7</text>
+          </svg>
+          <div style="font:400 12px/1.6 system-ui;color:#9b93ab;margin-top:8px;text-align:center">two dots = the 3rd &amp; 7th trading jobs; violet marks the half-step move.<br><span style="color:#6f6880">reveal + item detail + Workbench review — never during the question</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ 4b — KEYBOARD AT REVEAL ═══ -->
+<div class="dv-opt" id="4b">
+<div class="dv-olabel"><a class="dv-oid" href="#4b">4b</a>Answer reveal with the keyboard shape — updates the reveal state from turn 1</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Reveal + keyboard" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · 11:24 left</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">IT WAS</div>
+        <div style="font:500 84px/1 'Newsreader',serif;font-style:italic;color:#f2eef7;letter-spacing:-0.02em">G7<span style="color:#cf7a52">♭9</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:#cf7a52;box-shadow:0 0 14px rgba(207,122,82,.7)"></div><span style="font:500 16px 'Newsreader',serif;font-style:italic;color:#9b93ab">dominant, flat nine</span></div>
+        <div style="display:flex;position:relative;background:#0e0c10;padding:5px;border-radius:8px;margin-top:10px">
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#cf7a52"></div></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#cf7a52"></div></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box;position:relative"><div style="position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#cf7a52"></div></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="width:22px;height:64px;background:#e9e5f0;border:1px solid #17141c;border-radius:0 0 3px 3px;box-sizing:border-box"></div>
+          <div style="position:absolute;top:5px;left:21px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:43px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:87px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:109px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:131px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:175px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:197px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:241px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+          <div style="position:absolute;top:5px;left:263px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2;box-shadow:inset 0 -12px 0 #cf7a52"></div>
+          <div style="position:absolute;top:5px;left:285px;width:13px;height:40px;background:#17141c;border-radius:0 0 2px 2px;z-index:2"></div>
+        </div>
+        <div style="font:400 12px 'Space Grotesk',sans-serif;color:#6f6880">rootless, left hand — the shape you'd grab</div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+          <div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div>
+          <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×1</div>
+        </div>
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+          <div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div>
+          <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×2</div>
+        </div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+
+<!-- ═══ 4c — CONTOUR AT REVEAL (RUNG 5) ═══ -->
+<div class="dv-opt" id="4c">
+<div class="dv-olabel"><a class="dv-oid" href="#4c">4c</a>Progression reveal (Rung 5) with the guide-tone contour</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Progression reveal + contour" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in C</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">3 / 18 · Rung 5</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">IT WAS</div>
+        <div style="font:500 66px/1 'Newsreader',serif;font-style:italic;color:#f2eef7;letter-spacing:-0.01em">ii–V–I</div>
+        <div style="font:500 16px 'Newsreader',serif;font-style:italic;color:#9b93ab">major, resolved</div>
+        <svg width="330" height="130" viewBox="0 0 330 130" style="margin-top:8px">
+          <line x1="55" y1="26" x2="165" y2="40" stroke="#a58fe0" stroke-width="2.5"></line>
+          <line x1="165" y1="40" x2="275" y2="40" stroke="#4a4458" stroke-width="2.5"></line>
+          <line x1="55" y1="74" x2="165" y2="74" stroke="#4a4458" stroke-width="2.5"></line>
+          <line x1="165" y1="74" x2="275" y2="88" stroke="#a58fe0" stroke-width="2.5"></line>
+          <circle cx="55" cy="26" r="7" fill="#ece4d3"></circle>
+          <circle cx="165" cy="40" r="7" fill="#a58fe0"></circle>
+          <circle cx="275" cy="40" r="7" fill="#ece4d3"></circle>
+          <circle cx="55" cy="74" r="7" fill="#ece4d3"></circle>
+          <circle cx="165" cy="74" r="7" fill="#ece4d3"></circle>
+          <circle cx="275" cy="88" r="7" fill="#a58fe0"></circle>
+          <text x="55" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">Dm7</text>
+          <text x="165" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">G7</text>
+          <text x="275" y="118" text-anchor="middle" fill="#ece4d3" style="font:500 15px 'Newsreader',serif;font-style:italic">Cmaj7</text>
+        </svg>
+        <div style="font:400 13px/1.6 'Space Grotesk',sans-serif;color:#6f6880;text-align:center">the 3rds and 7ths trade jobs —<br>each resolution is a half step down</div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+          <div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div>
+          <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×1</div>
+        </div>
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+          <div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div>
+          <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×2</div>
+        </div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "make the contour dots animate with the audio in the flow prototype" · "keyboard dots too small on the phone — bigger" · "apply the keyboard to the miss-comparison A/B too"</p>
+</section>
+
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Journeys 2–5 — onboarding &amp; placement, the Ladder, Tune Workbench (med-fi), Call &amp; Response (concept)</span></div>
+<p class="dv-sub">All in <a class="dv-oid" href="#1a">1a</a> Blue Hour Console. Hi-fi for <a class="dv-oid" href="#3a">3a</a>/<a class="dv-oid" href="#3b">3b</a>, medium for <a class="dv-oid" href="#3c">3c</a>, one concept frame for <a class="dv-oid" href="#3d">3d</a>.</p>
+<div class="dv-opts">
+
+<!-- ═══ 3a — ONBOARDING & PLACEMENT ═══ -->
+<div class="dv-opt" id="3a">
+<div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Journey 2 — welcome · context capture · placement test · the "you're here" moment</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:24px">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Onboarding — welcome" style="height:100%;background:radial-gradient(circle at 50% 115%, #241e30, #17141c 60%);display:flex;flex-direction:column;padding:78px 32px 56px;box-sizing:border-box">
+      <div style="font:700 13px 'Space Grotesk',sans-serif;letter-spacing:.22em;color:#9b93ab">CHANGES</div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px">
+        <div style="font:500 52px/1.15 'Newsreader',serif;font-style:italic;color:#f2eef7;letter-spacing:-0.01em">Learn to hear changes.</div>
+        <div style="font:400 17px/1.55 'Space Grotesk',sans-serif;color:#9b93ab">Headphones on, phone away. Ten minutes on the train, every day — a jazz ear, built for good.</div>
+      </div>
+      <div style="padding:18px;border-radius:99px;text-align:center;background:#a58fe0;font:600 17px 'Space Grotesk',sans-serif;color:#17141c">Begin</div>
+      <div style="text-align:center;font:500 12px 'Space Grotesk',sans-serif;color:#6f6880;margin-top:16px">one-time purchase · offline · no account</div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Onboarding — context" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 56px;box-sizing:border-box">
+      <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#6f6880">2 OF 3</div>
+      <div style="font:500 30px/1.25 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:10px">About your playing</div>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:30px">
+        <div>
+          <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab;margin-bottom:10px">INSTRUMENT</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;border:1px solid rgba(165,143,224,.55);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">Piano</div>
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Guitar</div>
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Horn</div>
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">Voice</div>
+          </div>
+        </div>
+        <div>
+          <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab;margin-bottom:10px">YOU'D SAY YOU…</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="padding:16px 18px;border-radius:16px;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">know some tunes, read charts slowly</div>
+            <div style="padding:16px 18px;border-radius:16px;background:#211d29;border:1px solid rgba(165,143,224,.55);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">comp through standards, want better ears</div>
+            <div style="padding:16px 18px;border-radius:16px;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">gig regularly, chasing fine detail</div>
+          </div>
+        </div>
+        <div>
+          <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab;margin-bottom:10px">DAILY SESSION</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">10 min</div>
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;border:1px solid rgba(165,143,224,.55);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">18 min</div>
+            <div style="flex:1;padding:14px 0;border-radius:16px;text-align:center;background:#211d29;font:500 15px 'Space Grotesk',sans-serif;color:#9b93ab">25 min</div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="padding:16px;border-radius:99px;text-align:center;background:#a58fe0;font:600 16px 'Space Grotesk',sans-serif;color:#17141c">Next — place my ear</div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Placement test" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 56px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#a58fe0">PLACEMENT</div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">5 / 12 · ~2 min left</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">WHICH DEGREE IS THIS NOTE?</div>
+        <div style="width:150px;height:150px;border-radius:50%;border:1px solid rgba(165,143,224,.4);display:flex;align-items:center;justify-content:center">
+          <span style="font:500 64px 'Newsreader',serif;font-style:italic;color:#a58fe0">?</span>
+        </div>
+        <div style="font:400 14px/1.6 'Space Grotesk',sans-serif;color:#6f6880;text-align:center">no grades shown yet — just answer.<br>we're finding your rung, not scoring you</div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;height:96px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;align-items:center;justify-content:center;font:600 18px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div>
+        <div style="flex:1;height:96px;border-radius:22px;background:#211d29;display:flex;align-items:center;justify-content:center;font:600 18px 'Space Grotesk',sans-serif;color:#9b93ab">Not sure</div>
+      </div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Placement result — you're here" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:74px 30px 50px;box-sizing:border-box">
+      <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#a58fe0">YOUR EAR, PLACED</div>
+      <div style="font:500 28px/1.25 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:8px">You already hear qualities.<br><span style="color:#9b93ab">Next: making them move.</span></div>
+      <div style="display:flex;flex-direction:column-reverse;gap:6px;margin-top:24px;flex:1;justify-content:flex-start">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">0</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880;text-decoration:line-through;text-decoration-color:rgba(165,143,224,.5)">Tonic orientation</span><span style="margin-left:auto;font:500 10px 'Space Grotesk',sans-serif;color:#a58fe0">PLACED OUT</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">1</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880;text-decoration:line-through;text-decoration-color:rgba(165,143,224,.5)">Diatonic degrees</span><span style="margin-left:auto;font:500 10px 'Space Grotesk',sans-serif;color:#a58fe0">PLACED OUT</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">2</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880;text-decoration:line-through;text-decoration-color:rgba(165,143,224,.5)">Minor &amp; chromatic colors</span><span style="margin-left:auto;font:500 10px 'Space Grotesk',sans-serif;color:#a58fe0">PLACED OUT</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#7a68b3">3</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Melodies by ear</span><span style="margin-left:auto;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">SOLID</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:#211d29;border:1px solid rgba(165,143,224,.55);box-shadow:0 0 24px rgba(165,143,224,.25)"><span style="font:600 12px ui-monospace,monospace;color:#a58fe0">4</span><div><div style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">Chord qualities</div><div style="font:400 11px system-ui;color:#9b93ab">you start here — decomposition drills</div></div><span style="margin-left:auto;width:10px;height:10px;border-radius:50%;background:#a58fe0;box-shadow:0 0 10px rgba(165,143,224,.9)"></span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">5</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880">Guide tones &amp; ii–V–I</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">6</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880">Bass lines &amp; cells</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">7</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880">Colors &amp; voicings</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">8</span><span style="font:500 14px 'Space Grotesk',sans-serif;color:#6f6880">Whole tunes</span></div>
+      </div>
+      <div style="padding:16px;border-radius:99px;text-align:center;background:#a58fe0;font:600 16px 'Space Grotesk',sans-serif;color:#17141c;margin-top:14px">Start Rung 4 tomorrow morning</div>
+    </div>
+  </x-import>
+</div>
+</div>
+</div>
+
+<!-- ═══ 3b — PROGRESS & THE LADDER ═══ -->
+<div class="dv-opt" id="3b">
+<div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Journey 3 — home hub · the Ladder · item detail</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:24px">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Home hub" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 56px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font:700 13px 'Space Grotesk',sans-serif;letter-spacing:.22em;color:#f2eef7">CHANGES</div>
+        <div style="font:500 12px 'Space Grotesk',sans-serif;color:#6f6880">TUE JUL 7</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:28px;padding:20px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.3)">
+        <div style="width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 50% 40%, #2b2436, #211d29 75%);border:1px solid rgba(165,143,224,.45);box-shadow:0 0 24px rgba(165,143,224,.25);display:flex;align-items:center;justify-content:center;flex:none">
+          <svg width="20" height="22" viewBox="0 0 52 56"><path d="M6 4 L48 28 L6 52 Z" fill="#a58fe0"></path></svg>
+        </div>
+        <div>
+          <div style="font:600 17px 'Space Grotesk',sans-serif;color:#f2eef7">Today · 18 min</div>
+          <div style="font:500 14px 'Newsreader',serif;font-style:italic;color:#a58fe0;margin-top:3px">Chord qualities · 12 reviews due</div>
+        </div>
+      </div>
+      <div style="margin-top:26px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">THIS WEEK</span><span style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">142 min</span></div>
+        <div style="display:flex;gap:7px;align-items:flex-end;height:56px;margin-top:12px">
+          <div style="flex:1;height:60%;border-radius:5px;background:#4a3f63"></div>
+          <div style="flex:1;height:80%;border-radius:5px;background:#4a3f63"></div>
+          <div style="flex:1;height:45%;border-radius:5px;background:#4a3f63"></div>
+          <div style="flex:1;height:100%;border-radius:5px;background:#7a68b3"></div>
+          <div style="flex:1;height:70%;border-radius:5px;background:#4a3f63"></div>
+          <div style="flex:1;height:30%;border-radius:5px;background:#4a3f63"></div>
+          <div style="flex:1;height:90%;border-radius:5px;background:#a58fe0;box-shadow:0 0 12px rgba(165,143,224,.4)"></div>
+        </div>
+        <div style="display:flex;gap:7px;margin-top:6px">
+          <div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">W</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">T</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">F</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">S</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">S</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#6f6880">M</div><div style="flex:1;text-align:center;font:500 10px 'Space Grotesk',sans-serif;color:#a58fe0">T</div>
+        </div>
+      </div>
+      <div style="margin-top:26px">
+        <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">NEEDS YOUR EAR</div>
+        <div style="display:flex;flex-direction:column;margin-top:6px">
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <div style="width:14px;height:14px;border:2.5px solid #b07fae;transform:rotate(45deg);border-radius:3px;box-sizing:border-box"></div>
+            <span style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7♭5 vs dim7</span>
+            <span style="margin-left:auto;font:600 13px 'Space Grotesk',sans-serif;color:#9b93ab">64%</span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2 L11 7 L3 12 Z" fill="#a58fe0"></path></svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <div style="width:14px;height:14px;border-radius:50%;background:#a84c42"></div>
+            <span style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">♭9 vs ♯9</span>
+            <span style="margin-left:auto;font:600 13px 'Space Grotesk',sans-serif;color:#9b93ab">71%</span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2 L11 7 L3 12 Z" fill="#a58fe0"></path></svg>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:18px;background:#211d29">
+        <span style="font:600 12px ui-monospace,monospace;color:#a58fe0">4</span>
+        <div style="flex:1"><div style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">Rung 4 — Chord qualities</div>
+        <div style="height:4px;border-radius:2px;background:#17141c;margin-top:8px;overflow:hidden"><div style="width:68%;height:100%;background:#a58fe0"></div></div></div>
+        <span style="font:600 13px 'Space Grotesk',sans-serif;color:#9b93ab">68%</span>
+      </div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="The Ladder" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:74px 28px 50px;box-sizing:border-box">
+      <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">THE LADDER</div>
+      <div style="font:500 26px/1.2 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:6px">From finding Do<br>to hearing whole tunes</div>
+      <div style="display:flex;flex-direction:column-reverse;gap:5px;margin-top:20px;flex:1">
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#211d29"><span style="font:600 11px ui-monospace,monospace;color:#a58fe0">0</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#f2eef7">Tonic orientation</span><div style="margin-left:auto;display:flex;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#211d29"><span style="font:600 11px ui-monospace,monospace;color:#a58fe0">1</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#f2eef7">Diatonic degrees, major</span><div style="margin-left:auto;display:flex;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#211d29"><span style="font:600 11px ui-monospace,monospace;color:#a58fe0">2</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#f2eef7">Minor &amp; chromatic colors</span><div style="margin-left:auto;display:flex;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="width:8px;height:8px;border-radius:50%;background:#7a68b3"></span><span style="width:8px;height:8px;border-radius:50%;background:#7a68b3"></span></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#211d29"><span style="font:600 11px ui-monospace,monospace;color:#7a68b3">3</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#f2eef7">Melodies by ear</span><div style="margin-left:auto;display:flex;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#7a68b3"></span><span style="width:8px;height:8px;border-radius:50%;background:#7a68b3"></span><span style="width:8px;height:8px;border-radius:50%;background:#4a3f63"></span></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:15px 14px;border-radius:14px;background:#211d29;border:1px solid rgba(165,143,224,.55);box-shadow:0 0 26px rgba(165,143,224,.22)"><span style="font:600 12px ui-monospace,monospace;color:#a58fe0">4</span><div><div style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">Chord qualities</div><div style="font:400 11px system-ui;color:#9b93ab;margin-top:2px">bass → 3rd → 7th → colors · 68%</div></div><div style="margin-left:auto;display:flex;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="width:8px;height:8px;border-radius:50%;background:#7a68b3"></span><span style="width:8px;height:8px;border-radius:50%;background:#4a3f63"></span><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid #4a4458;box-sizing:border-box"></span></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">5</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#6f6880">Guide tones &amp; ii–V–I</span><span style="margin-left:auto;font:400 11px system-ui;color:#4a4458">unlocks at 80%</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">6</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#6f6880">Bass lines &amp; cells</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">7</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#6f6880">Colors &amp; voicings</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px"><span style="font:600 11px ui-monospace,monospace;color:#4a4458">8</span><span style="font:500 13.5px 'Space Grotesk',sans-serif;color:#6f6880">Whole tunes</span></div>
+      </div>
+      <div style="font:400 11.5px/1.6 system-ui;color:#6f6880;margin-top:14px">mastery is SRS-measured — dots are skills within a rung, lit when they stay remembered</div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Item detail" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:74px 28px 56px;box-sizing:border-box">
+      <div style="display:flex;align-items:center;gap:8px"><svg width="10" height="17" viewBox="0 0 10 17"><path d="M8.5 1.5 L2 8.5 L8.5 15.5" fill="none" stroke="#9b93ab" stroke-width="2.4" stroke-linecap="round"></path></svg><span style="font:500 13px 'Space Grotesk',sans-serif;color:#9b93ab">Rung 4</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;margin-top:30px;gap:12px">
+        <div style="width:26px;height:26px;border-radius:50%;background:#a84c42"></div>
+        <div style="font:500 58px/1 'Newsreader',serif;font-style:italic;color:#f2eef7">Dominant <span style="color:#a84c42">♭9</span></div>
+        <div style="font:500 14px 'Newsreader',serif;font-style:italic;color:#9b93ab">the darkened crunch on the five chord</div>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:26px">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="60" fill="none" stroke="#211d29" stroke-width="7"></circle>
+          <circle cx="70" cy="70" r="60" fill="none" stroke="#a58fe0" stroke-width="7" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="64" transform="rotate(-90 70 70)"></circle>
+          <text x="70" y="66" text-anchor="middle" fill="#f2eef7" style="font:600 30px 'Space Grotesk',sans-serif">83%</text>
+          <text x="70" y="88" text-anchor="middle" fill="#6f6880" style="font:500 11px 'Space Grotesk',sans-serif">SOLID</text>
+        </svg>
+      </div>
+      <div style="display:flex;flex-direction:column;margin-top:22px">
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Often confused with</span>
+          <span style="font:600 14px 'Newsreader',serif;font-style:italic;color:#f2eef7">♯9 <span style="color:#6f6880">· 5 of last 6 misses</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Next review</span>
+          <span style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">Thursday</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Last 10</span>
+          <div style="display:flex;gap:4px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#a84c42"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#a84c42"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span><span style="width:9px;height:9px;border-radius:50%;background:#7a68b3"></span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;gap:10px">
+        <div style="flex:1;padding:16px 0;border-radius:99px;text-align:center;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">▶ Hear it</div>
+        <div style="flex:1;padding:16px 0;border-radius:99px;text-align:center;background:#211d29;font:600 15px 'Space Grotesk',sans-serif;color:#9b93ab">A/B vs ♯9</div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+</div>
+
+<!-- ═══ 3c — TUNE WORKBENCH (MED-FI) ═══ -->
+<div class="dv-opt" id="3c">
+<div class="dv-olabel"><a class="dv-oid" href="#3c">3c</a>Journey 4, med-fi — tune list · the self-revealing lead sheet</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:24px">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Workbench — tune list" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:74px 28px 56px;box-sizing:border-box">
+      <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">TUNE WORKBENCH</div>
+      <div style="font:500 28px/1.2 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:8px">Transcribe blind.<br><span style="color:#9b93ab">The chart earns itself.</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:26px">
+        <div style="padding:18px;border-radius:18px;background:#211d29;border:1px solid rgba(165,143,224,.4)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 18px 'Newsreader',serif;font-style:italic;color:#f2eef7">Autumn Leaves</span><span style="font:600 13px 'Space Grotesk',sans-serif;color:#a58fe0">21 / 32 bars</span></div>
+          <div style="display:flex;gap:3px;margin-top:12px">
+            <div style="flex:1;height:8px;border-radius:2px;background:#7a68b3"></div><div style="flex:1;height:8px;border-radius:2px;background:#7a68b3"></div><div style="flex:1;height:8px;border-radius:2px;background:#7a68b3"></div><div style="flex:1;height:8px;border-radius:2px;background:#7a68b3"></div><div style="flex:1;height:8px;border-radius:2px;background:#a58fe0"></div><div style="flex:1;height:8px;border-radius:2px;background:#2b2436"></div><div style="flex:1;height:8px;border-radius:2px;background:#a84c42"></div><div style="flex:1;height:8px;border-radius:2px;background:#2b2436"></div>
+          </div>
+          <div style="font:400 11.5px system-ui;color:#9b93ab;margin-top:10px">in progress · form ✓ · landmarks ✓ · cell-by-cell</div>
+        </div>
+        <div style="padding:18px;border-radius:18px;background:#211d29">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 18px 'Newsreader',serif;font-style:italic;color:#f2eef7">All the Things You Are</span><span style="font:600 13px 'Space Grotesk',sans-serif;color:#9b93ab">new</span></div>
+          <div style="font:400 11.5px system-ui;color:#6f6880;margin-top:8px">36 bars · starts with the form: AABA or something else?</div>
+        </div>
+        <div style="padding:18px;border-radius:18px;background:#211d29">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 18px 'Newsreader',serif;font-style:italic;color:#f2eef7">Blue Bossa</span><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#a58fe0;box-shadow:0 0 8px rgba(165,143,224,.8)"></span><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">heard</span></span></div>
+          <div style="font:400 11.5px system-ui;color:#6f6880;margin-top:8px">fully revealed · replay in trio texture anytime</div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="font:400 11.5px/1.6 system-ui;color:#6f6880">texture ladder: clean piano → jazz trio → real recordings (later)</div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Workbench — revealing lead sheet" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:74px 26px 50px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font:600 24px 'Newsreader',serif;font-style:italic;color:#f2eef7">Autumn Leaves</div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:99px;background:#211d29"><div style="width:7px;height:7px;border-radius:50%;background:#7d99c9"></div><span style="font:600 12px 'Space Grotesk',sans-serif;color:#f2eef7">G minor</span></div>
+      </div>
+      <div style="font:500 12px 'Space Grotesk',sans-serif;color:#6f6880;margin-top:4px">A section, second pass · listening bar 5</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;border-top:1px solid rgba(236,228,211,.3);border-left:1px solid rgba(236,228,211,.3)">
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">Cm7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">F7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">B♭maj7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">E♭maj7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center;background:rgba(165,143,224,.12);box-shadow:inset 0 0 0 1.5px #a58fe0"><span style="font:500 26px 'Newsreader',serif;font-style:italic;color:#a58fe0">?</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 17px 'Newsreader',serif;font-style:italic;color:#4a4458">— —</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#a84c42">D7♭9</span><span style="font:500 8.5px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#a84c42">MISSED ×2</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 17px 'Newsreader',serif;font-style:italic;color:#4a4458">— —</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">Cm7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#ece4d3">F7</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 17px 'Newsreader',serif;font-style:italic;color:#4a4458">— —</span></div>
+        <div style="height:74px;border-right:1px solid rgba(236,228,211,.3);border-bottom:1px solid rgba(236,228,211,.3);display:flex;align-items:center;justify-content:center"><span style="font:500 17px 'Newsreader',serif;font-style:italic;color:#4a4458">— —</span></div>
+      </div>
+      <div style="display:flex;gap:14px;margin-top:16px;align-items:center">
+        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#ece4d3"></span><span style="font:400 11px system-ui;color:#9b93ab">earned</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#a58fe0"></span><span style="font:400 11px system-ui;color:#9b93ab">listening now</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#a84c42"></span><span style="font:400 11px system-ui;color:#9b93ab">missed → SRS</span></div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="padding:16px 18px;border-radius:18px;background:#211d29;display:flex;align-items:center;gap:12px">
+        <div style="width:44px;height:44px;border-radius:50%;background:#17141c;border:1px solid rgba(165,143,224,.45);display:flex;align-items:center;justify-content:center"><svg width="15" height="17" viewBox="0 0 15 17"><path d="M1.5 1 L13.5 8.5 L1.5 16 Z" fill="#a58fe0"></path></svg></div>
+        <div><div style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">Play bars 5–8 again</div><div style="font:400 11.5px system-ui;color:#9b93ab;margin-top:2px">missed cells flow into tomorrow's Pocket Session</div></div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+</div>
+
+<!-- ═══ 3d — CALL & RESPONSE (CONCEPT) ═══ -->
+<div class="dv-opt" id="3d">
+<div class="dv-olabel"><a class="dv-oid" href="#3d">3d</a>Journey 5, concept — sing the 3rd, tuner-like feedback that encourages</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:28px;align-items:flex-start">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Call &amp; Response — listening" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 56px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#7d99c9"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Dm7</span></div>
+        <div style="font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#a58fe0">WALKING MODE</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">SING THE 3RD</div>
+        <div style="font:500 30px 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-bottom:20px">any octave you like</div>
+        <svg width="260" height="120" viewBox="0 0 260 120">
+          <path d="M 24 104 A 106 106 0 0 1 236 104" fill="none" stroke="#211d29" stroke-width="9" stroke-linecap="round"></path>
+          <path d="M 24 104 A 106 106 0 0 1 118 12" fill="none" stroke="#a58fe0" stroke-width="9" stroke-linecap="round"></path>
+          <circle cx="118" cy="12" r="10" fill="#a58fe0"></circle>
+          <text x="34" y="120" fill="#6f6880" style="font:500 11px 'Space Grotesk',sans-serif">FLAT</text>
+          <text x="130" y="120" text-anchor="middle" fill="#9b93ab" style="font:600 11px 'Space Grotesk',sans-serif">THERE</text>
+          <text x="226" y="120" text-anchor="end" fill="#6f6880" style="font:500 11px 'Space Grotesk',sans-serif">SHARP</text>
+        </svg>
+        <div style="font:500 20px 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:8px">a hair under — <span style="color:#a58fe0">lean up into it</span></div>
+        <div style="display:flex;gap:5px;align-items:center;height:34px;margin-top:14px">
+          <div style="width:4px;height:12px;border-radius:2px;background:#a58fe0;opacity:.5"></div>
+          <div style="width:4px;height:22px;border-radius:2px;background:#a58fe0;opacity:.7"></div>
+          <div style="width:4px;height:30px;border-radius:2px;background:#a58fe0"></div>
+          <div style="width:4px;height:18px;border-radius:2px;background:#a58fe0;opacity:.7"></div>
+          <div style="width:4px;height:26px;border-radius:2px;background:#a58fe0;opacity:.85"></div>
+        </div>
+        <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#6f6880">LISTENING · SAY "SKIP" TO PASS</div>
+      </div>
+      <div style="text-align:center;font:400 12px/1.6 system-ui;color:#6f6880">never a red X — the needle is information,<br>the words are the teacher</div>
+    </div>
+  </x-import>
+  <div style="width:300px;display:flex;flex-direction:column;gap:14px;padding-top:6px">
+    <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab">CONCEPT NOTES</div>
+    <div style="font:400 12.5px/1.75 system-ui;color:#9b93ab">Feedback is direction, not judgment: the arc fills toward "there," copy speaks like a teacher standing at the piano ("lean up into it"), and a held near-miss resolves to a soft glow — no percentage, no red. Octave-agnostic; grading tolerance widens when walking (motion detected). Phase-2 scope: this frame + the nailed-it state is all we mock for now.</div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "tighten the placement result copy" · "show the ♭9 vs ♯9 A/B from <a class="dv-oid" href="#3b">3b</a>'s item detail" · "animate the lead-sheet reveal in <a class="dv-oid" href="#3c">3c</a>"</p>
+</section>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Direction locked: <a class="dv-oid" href="#1a">1a</a> Blue Hour Console — visual language + full Pocket Session states</span></div>
+<p class="dv-sub">The live, audible flow prototype is here: <a href="Pocket Session Flow.dc.html">Pocket Session Flow</a> — it plays the actual choreography (cadence → chord → gap → spoken reveal, with a scripted miss). Below: the system sheet and every remaining Journey&nbsp;1 state, including the lock screen — which the brief rightly calls a primary UI.</p>
+<div class="dv-opts">
+
+<!-- ═══ 2a — VISUAL LANGUAGE SHEET ═══ -->
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Sound has visual character — the system sheet</div>
+<div class="dv-card" style="width:860px;background:#17141c;padding:34px;box-sizing:border-box">
+  <div style="display:flex;flex-direction:column;gap:30px">
+    <div>
+      <div style="font:700 20px 'Space Grotesk',sans-serif;color:#f2eef7">The rule: quality = hue + shape · tension = temperature shift · mastery = light</div>
+      <div style="font:400 12.5px/1.6 system-ui;color:#9b93ab;margin-top:6px;max-width:640px">One learnable mapping used everywhere — session reveals, the Ladder, item details, the Workbench chart. Shapes make it work for color-blind users and at glance-size; hues make it fast.</div>
+    </div>
+
+    <div>
+      <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-bottom:14px">CHORD QUALITIES — HUE + SHAPE</div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;padding:18px 0;border-radius:14px;background:#211d29;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:26px;height:26px;border-radius:50%;background:#d9a854"></div>
+          <div style="font:500 17px 'Newsreader',serif;font-style:italic;color:#f2eef7">maj7</div>
+          <div style="font:400 10.5px system-ui;color:#6f6880">circle · at rest</div>
+        </div>
+        <div style="flex:1;padding:18px 0;border-radius:14px;background:#211d29;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:26px;height:26px;border-radius:8px;background:#7d99c9"></div>
+          <div style="font:500 17px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7</div>
+          <div style="font:400 10.5px system-ui;color:#6f6880">soft square · settled</div>
+        </div>
+        <div style="flex:1;padding:18px 0;border-radius:14px;background:#211d29;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:26px;height:26px;background:#cf7a52;transform:rotate(45deg);border-radius:5px"></div>
+          <div style="font:500 17px 'Newsreader',serif;font-style:italic;color:#f2eef7">7</div>
+          <div style="font:400 10.5px system-ui;color:#6f6880">diamond · leaning</div>
+        </div>
+        <div style="flex:1;padding:18px 0;border-radius:14px;background:#211d29;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:26px;height:26px;background:transparent;border:3px solid #b07fae;transform:rotate(45deg);border-radius:5px;box-sizing:border-box"></div>
+          <div style="font:500 17px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7♭5</div>
+          <div style="font:400 10.5px system-ui;color:#6f6880">hollow diamond · unstable</div>
+        </div>
+        <div style="flex:1;padding:18px 0;border-radius:14px;background:#211d29;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="display:flex;gap:4px"><div style="width:12px;height:12px;background:#8b8fa3;transform:rotate(45deg);border-radius:2px"></div><div style="width:12px;height:12px;background:#8b8fa3;transform:rotate(45deg);border-radius:2px;opacity:.55"></div></div>
+          <div style="font:500 17px 'Newsreader',serif;font-style:italic;color:#f2eef7">dim7</div>
+          <div style="font:400 10.5px system-ui;color:#6f6880">split diamond · symmetric</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:28px">
+      <div style="flex:1.3">
+        <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-bottom:14px">TENSIONS — TEMPERATURE SHIFTS ON THE DOMINANT</div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#a84c42;margin:0 auto 8px"></div><div style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">♭9</div><div style="font:400 10px system-ui;color:#6f6880">darker, redder</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#c25a8a;margin:0 auto 8px"></div><div style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">♯9</div><div style="font:400 10px system-ui;color:#6f6880">hotter, magenta</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#5aa3a0;margin:0 auto 8px"></div><div style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">♯11</div><div style="font:400 10px system-ui;color:#6f6880">cooler, lifted</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#b8813f;margin:0 auto 8px"></div><div style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">♭13</div><div style="font:400 10px system-ui;color:#6f6880">burnt amber</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#d99b4e;margin:0 auto 8px"></div><div style="font:500 15px 'Newsreader',serif;font-style:italic;color:#f2eef7">13</div><div style="font:400 10px system-ui;color:#6f6880">warm, open</div></div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-bottom:14px">MASTERY — LIGHT, NOT XP</div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;border:1.5px solid #4a4458;margin:0 auto 8px;box-sizing:border-box"></div><div style="font:500 11px 'Space Grotesk',sans-serif;color:#9b93ab">new</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#4a3f63;margin:0 auto 8px"></div><div style="font:500 11px 'Space Grotesk',sans-serif;color:#9b93ab">learning</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#7a68b3;margin:0 auto 8px"></div><div style="font:500 11px 'Space Grotesk',sans-serif;color:#9b93ab">solid</div></div>
+          <div style="flex:1;padding:14px 0;border-radius:12px;background:#211d29;text-align:center"><div style="width:14px;height:14px;border-radius:50%;background:#a58fe0;box-shadow:0 0 12px rgba(165,143,224,.8);margin:0 auto 8px"></div><div style="font:500 11px 'Space Grotesk',sans-serif;color:#9b93ab">mastered</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:28px;align-items:center;padding:18px 22px;border-radius:14px;background:#211d29">
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#17141c"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+      <div style="font:400 12px/1.6 system-ui;color:#9b93ab">The key badge is always present in session — the dot takes the hue of the current tonal center's chord quality (major = gold, minor = blue). Keys themselves stay neutral; <i>function</i> gets color, not pitch — that's the pedagogy.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ 2b — IN-SESSION STATES ═══ -->
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>In-session states — context, thinking gap, miss comparison (cards)</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:24px">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Context / listening" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · 11:24 left</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center"><svg width="12" height="14" viewBox="0 0 12 14"><rect x="0" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect><rect x="8" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">LISTEN</div>
+        <div style="display:flex;gap:7px;align-items:flex-end;height:76px">
+          <div style="width:7px;height:26px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:58px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:40px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:70px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:34px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:62px;border-radius:4px;background:#a58fe0"></div>
+          <div style="width:7px;height:22px;border-radius:4px;background:#a58fe0"></div>
+        </div>
+        <div style="font:500 18px 'Newsreader',serif;font-style:italic;color:#f2eef7">establishing E♭ major</div>
+      </div>
+      <div style="display:flex;gap:12px;opacity:.25">
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;align-items:center;justify-content:center"><div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div></div>
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;align-items:center;justify-content:center"><div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div></div>
+      </div>
+      <div style="height:3px;border-radius:2px;background:#211d29;margin-top:18px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Thinking gap" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · 11:24 left</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center"><svg width="12" height="14" viewBox="0 0 12 14"><rect x="0" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect><rect x="8" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab;text-align:center">NAME IT —<br>OUT LOUD OR IN YOUR HEAD</div>
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="66" fill="none" stroke="#211d29" stroke-width="5"></circle>
+          <circle cx="75" cy="75" r="66" fill="none" stroke="#a58fe0" stroke-width="5" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="155" transform="rotate(-90 75 75)"></circle>
+        </svg>
+        <div style="font:400 13px 'Space Grotesk',sans-serif;color:#6f6880">answer coming</div>
+      </div>
+      <div style="display:flex;gap:12px;opacity:.25">
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;align-items:center;justify-content:center"><div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div></div>
+        <div style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;align-items:center;justify-content:center"><div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div></div>
+      </div>
+      <div style="height:3px;border-radius:2px;background:#211d29;margin-top:18px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Miss comparison — cards" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#a58fe0">comparison</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center"><svg width="12" height="14" viewBox="0 0 12 14"><rect x="0" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect><rect x="8" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">HEAR THE DIFFERENCE</div>
+        <div style="display:flex;gap:14px">
+          <div style="width:150px;padding:28px 0;border-radius:20px;text-align:center;background:#211d29;border:1px solid rgba(165,143,224,.55);box-shadow:0 0 24px rgba(176,127,174,.3)">
+            <div style="width:22px;height:22px;border:3px solid #b07fae;transform:rotate(45deg);border-radius:4px;box-sizing:border-box;margin:0 auto 12px"></div>
+            <div style="font:500 34px 'Newsreader',serif;font-style:italic;color:#f2eef7">Am7♭5</div>
+            <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#b07fae;margin-top:6px">PLAYING</div>
+          </div>
+          <div style="width:150px;padding:28px 0;border-radius:20px;text-align:center;background:#211d29;border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;gap:3px;justify-content:center;margin:0 auto 12px;height:22px;align-items:center"><div style="width:10px;height:10px;background:#8b8fa3;transform:rotate(45deg);border-radius:2px"></div><div style="width:10px;height:10px;background:#8b8fa3;transform:rotate(45deg);border-radius:2px;opacity:.55"></div></div>
+            <div style="font:500 34px 'Newsreader',serif;font-style:italic;color:#f2eef7">A°7</div>
+            <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#6f6880;margin-top:6px">NEXT</div>
+          </div>
+        </div>
+        <div style="font:500 16px 'Newsreader',serif;font-style:italic;color:#a58fe0;text-align:center">hear the seventh drop a half step</div>
+        <div style="padding:12px 28px;border-radius:99px;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">I hear it — continue</div>
+      </div>
+      <div style="text-align:center;font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880;padding-bottom:6px">HANDS-FREE: SAYS EACH NAME BEFORE PLAYING · TAP EARBUD ×1 TO CONTINUE</div>
+      <div style="height:3px;border-radius:2px;background:#211d29;margin-top:14px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+    </div>
+  </x-import>
+</div>
+</div>
+</div>
+
+<!-- ═══ 2c — COMPARISON VARIANT ═══ -->
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Miss comparison, variant — the pendulum (one object oscillating, not two cards)</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Miss comparison — pendulum" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#a58fe0">comparison</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center"><svg width="12" height="14" viewBox="0 0 12 14"><rect x="0" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect><rect x="8" y="0" width="4" height="14" rx="1.5" fill="#9b93ab"></rect></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab;margin-bottom:24px">ONE SOUND, TWO NAMES</div>
+        <div style="font:500 58px/1 'Newsreader',serif;font-style:italic;color:#f2eef7">Am7♭5</div>
+        <svg width="220" height="70" viewBox="0 0 220 70">
+          <path d="M 20 20 Q 110 78 200 20" fill="none" stroke="#211d29" stroke-width="3"></path>
+          <path d="M 20 20 Q 65 52 108 60" fill="none" stroke="#a58fe0" stroke-width="3" stroke-linecap="round"></path>
+          <circle cx="108" cy="60" r="8" fill="#a58fe0"></circle>
+          <circle cx="20" cy="20" r="5" fill="#b07fae"></circle>
+          <circle cx="200" cy="20" r="5" fill="#8b8fa3"></circle>
+        </svg>
+        <div style="font:500 42px/1 'Newsreader',serif;font-style:italic;color:#6f6880">A°7</div>
+        <div style="font:500 16px 'Newsreader',serif;font-style:italic;color:#a58fe0;margin-top:26px;text-align:center">only the seventh moves —<br><span style="color:#9b93ab">G natural … then G♭</span></div>
+      </div>
+      <div style="display:flex;justify-content:center;padding-bottom:8px">
+        <div style="padding:12px 28px;border-radius:99px;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">I hear it — continue</div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+
+<!-- ═══ 2d — PAUSED / INTERRUPTED / COMPLETE ═══ -->
+<div class="dv-opt" id="2d">
+<div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Paused · interrupted (route audio ducks) · session complete</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:24px">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Paused" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · paused</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;align-items:center;justify-content:center"><svg width="13" height="15" viewBox="0 0 13 15"><path d="M1 1 L12 7.5 L1 14 Z" fill="#a58fe0"></path></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">PAUSED</div>
+        <div style="font:500 28px/1.35 'Newsreader',serif;font-style:italic;color:#f2eef7;text-align:center">take your time —<br>E♭ will still be here</div>
+        <div style="padding:12px 30px;border-radius:99px;background:#211d29;border:1px solid rgba(165,143,224,.45);font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7;margin-top:12px">Resume</div>
+      </div>
+      <div style="text-align:center;font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880;padding-bottom:6px">PROGRESS SAVED · SESSION RESUMES MID-ITEM</div>
+      <div style="height:3px;border-radius:2px;background:#211d29;margin-top:14px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Interrupted — route audio" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+        <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · holding</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#211d29;display:flex;align-items:center;justify-content:center"><svg width="13" height="15" viewBox="0 0 13 15"><path d="M1 1 L12 7.5 L1 14 Z" fill="#9b93ab"></path></svg></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:16px;background:#211d29;border:1px solid rgba(217,168,84,.4)">
+          <div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div>
+          <span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">Other audio detected — holding</span>
+        </div>
+        <div style="font:500 24px/1.4 'Newsreader',serif;font-style:italic;color:#9b93ab;text-align:center">…mind the gap…</div>
+        <div style="font:500 15px 'Space Grotesk',sans-serif;color:#6f6880;margin-top:10px">resuming when it's quiet · replays the item</div>
+      </div>
+      <div style="text-align:center;font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880;padding-bottom:6px">AUTO-PAUSE ON ROUTE ANNOUNCEMENTS &amp; SIRI · NO ITEM EVER LOST TO ONE</div>
+      <div style="height:3px;border-radius:2px;background:#211d29;margin-top:14px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+    </div>
+  </x-import>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Session complete" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+      <div style="font:500 13px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab;margin-top:4px">SESSION COMPLETE · 18:12</div>
+      <div style="font:500 32px/1.2 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:12px">Nice ears tonight.</div>
+      <div style="display:flex;flex-direction:column;margin-top:26px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Reviewed</span>
+          <span style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">22 items · 18 got</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Newly mastered</span>
+          <span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#a58fe0;box-shadow:0 0 10px rgba(165,143,224,.8)"></span><span style="font:600 14px 'Newsreader',serif;font-style:italic;color:#f2eef7">G7♭9 · Cm7 spread</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Weakest pair</span>
+          <span style="font:600 14px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7♭5 <span style="color:#6f6880">vs</span> dim7</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Due tomorrow</span>
+          <span style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">9 reviews · ~12 min</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0">
+          <span style="font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">Rung 4</span>
+          <span style="display:flex;align-items:center;gap:6px">
+            <span style="width:34px;height:5px;border-radius:3px;background:#a58fe0"></span><span style="width:34px;height:5px;border-radius:3px;background:#a58fe0"></span><span style="width:34px;height:5px;border-radius:3px;background:#7a68b3"></span><span style="width:34px;height:5px;border-radius:3px;background:#2b2436"></span>
+            <span style="font:600 12px 'Space Grotesk',sans-serif;color:#9b93ab;margin-left:4px">68%</span>
+          </span>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="padding:18px 20px;border-radius:20px;background:#211d29;border:1px solid rgba(165,143,224,.3)">
+        <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#a58fe0">TONIGHT AT THE PIANO</div>
+        <div style="font:500 16px/1.45 'Newsreader',serif;font-style:italic;color:#f2eef7;margin-top:7px">Play Am7♭5 → A°7 slowly. Listen for the seventh dropping.</div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</div>
+</div>
+
+<!-- ═══ 2e — LOCK SCREEN + DYNAMIC ISLAND ═══ -->
+<div class="dv-opt" id="2e">
+<div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>The lock screen is a primary UI — plus Dynamic Island, both Live-Activity states</div>
+<div class="dv-card" style="background:#141118;padding:28px;box-sizing:border-box">
+<div style="display:flex;gap:28px;align-items:flex-start">
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+    <div data-screen-label="Lock screen" style="height:100%;background:radial-gradient(circle at 50% -10%, #241e30, #17141c 55%, #0e0c10);display:flex;flex-direction:column;padding:70px 24px 90px;box-sizing:border-box;align-items:center">
+      <div style="font:500 15px -apple-system,system-ui;color:rgba(242,238,247,.75)">Tuesday, July 7</div>
+      <div style="font:300 88px/1 -apple-system,system-ui;color:#f2eef7;letter-spacing:-0.02em;margin-top:2px">9:41</div>
+      <div style="flex:1"></div>
+      <div style="width:100%;border-radius:26px;background:rgba(33,29,41,.82);backdrop-filter:blur(20px);padding:18px;box-sizing:border-box;border:1px solid rgba(255,255,255,.07)">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:46px;height:46px;border-radius:11px;background:radial-gradient(circle at 50% 38%, #2b2436, #211d29 75%);border:1px solid rgba(165,143,224,.4);display:flex;align-items:center;justify-content:center;flex:none">
+            <span style="font:500 22px 'Newsreader',serif;font-style:italic;color:#a58fe0">♭</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="font:600 15px 'Space Grotesk',sans-serif;color:#f2eef7">Chord qualities — in E♭</div>
+            <div style="font:500 12.5px 'Space Grotesk',sans-serif;color:#9b93ab;margin-top:2px">Changes · item 7 of 22</div>
+          </div>
+          <div style="font:500 12px 'Space Grotesk',sans-serif;color:#6f6880">11:24 left</div>
+        </div>
+        <div style="height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin:14px 0 6px;overflow:hidden"><div style="width:32%;height:100%;background:#a58fe0"></div></div>
+        <div style="display:flex;justify-content:center;gap:44px;align-items:center;margin-top:10px">
+          <svg width="26" height="24" viewBox="0 0 26 24"><path d="M12 3 L3 12 L12 21 M4 12 H23" fill="none" stroke="#9b93ab" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center"><svg width="16" height="19" viewBox="0 0 16 19"><rect x="1" y="1" width="5" height="17" rx="1.8" fill="#f2eef7"></rect><rect x="10" y="1" width="5" height="17" rx="1.8" fill="#f2eef7"></rect></svg></div>
+          <svg width="26" height="24" viewBox="0 0 26 24"><path d="M14 3 L23 12 L14 21 M22 12 H3" fill="none" stroke="#9b93ab" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div style="text-align:center;font:500 10.5px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880;margin-top:12px">← REPLAY ITEM · SKIP AHEAD → · EARBUD TAPS GRADE</div>
+      </div>
+    </div>
+  </x-import>
+
+  <div style="display:flex;flex-direction:column;gap:18px;width:430px">
+    <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab">DYNAMIC ISLAND — COMPACT</div>
+    <div style="border-radius:22px;background:#211d29;padding:14px 18px">
+      <div style="margin:0 auto;width:240px;height:37px;border-radius:22px;background:#000;display:flex;align-items:center;justify-content:space-between;padding:0 14px;box-sizing:border-box">
+        <div style="display:flex;gap:3px;align-items:center">
+          <div style="width:3px;height:8px;border-radius:2px;background:#a58fe0"></div>
+          <div style="width:3px;height:14px;border-radius:2px;background:#a58fe0"></div>
+          <div style="width:3px;height:10px;border-radius:2px;background:#a58fe0"></div>
+        </div>
+        <span style="font:600 12px 'Space Grotesk',sans-serif;color:#f2eef7">7<span style="color:#6f6880">/22</span></span>
+      </div>
+      <div style="text-align:center;font:400 11px system-ui;color:#6f6880;margin-top:10px">glance: live waveform + item counter — nothing else</div>
+    </div>
+
+    <div style="font:600 10px 'Space Grotesk',sans-serif;letter-spacing:.14em;color:#9b93ab;margin-top:6px">DYNAMIC ISLAND — EXPANDED (LONG-PRESS)</div>
+    <div style="border-radius:22px;background:#211d29;padding:14px 18px">
+      <div style="margin:0 auto;width:372px;border-radius:38px;background:#000;padding:18px 20px;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:10px;background:#17141c;border:1px solid rgba(165,143,224,.4);display:flex;align-items:center;justify-content:center"><span style="font:500 19px 'Newsreader',serif;font-style:italic;color:#a58fe0">♭</span></div>
+          <div style="flex:1">
+            <div style="font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭ · quality of this chord?</div>
+            <div style="font:500 11.5px 'Space Grotesk',sans-serif;color:#9b93ab;margin-top:2px">thinking gap · 3s</div>
+          </div>
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center"><svg width="11" height="13" viewBox="0 0 11 13"><rect x="0" y="0" width="4" height="13" rx="1.4" fill="#f2eef7"></rect><rect x="7" y="0" width="4" height="13" rx="1.4" fill="#f2eef7"></rect></svg></div>
+        </div>
+        <div style="height:3px;border-radius:2px;background:rgba(255,255,255,.12);margin-top:14px;overflow:hidden"><div style="width:62%;height:100%;background:#a58fe0"></div></div>
+      </div>
+      <div style="text-align:center;font:400 11px system-ui;color:#6f6880;margin-top:10px">the answer is never shown here during the gap — no cheating with a glance</div>
+    </div>
+
+    <div style="font:400 12px/1.7 system-ui;color:#9b93ab;border-top:1px solid rgba(255,255,255,.08);padding-top:16px">Live Activity mirrors the session state machine: waveform while audio plays, countdown during the gap, the revealed symbol only after the reveal moment. Media-key semantics match podcasts — play/pause is sacred, never remapped.</div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "run the flow prototype" (open <a href="Pocket Session Flow.dc.html">Pocket Session Flow</a>) · "go with <a class="dv-oid" href="#2b">2b</a> cards / <a class="dv-oid" href="#2c">2c</a> pendulum for the miss loop" · "on to Journeys 2 &amp; 3 — onboarding + the Ladder"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Direction take — "late-night jazz club × modern instrument"</span></div>
+<p class="dv-sub">Two directions, both dark-first on warm near-blacks with the club-violet accent. <a class="dv-oid" href="#1a">1a</a> gets its character from hardware restraint — the app as an instrument. <a class="dv-oid" href="#1b">1b</a> gets it from the real book — the app as a well-worn chart. Each shows the same two moments: Home and the answer-reveal.</p>
+<div class="dv-opts">
+
+<!-- ═══════════════ 1a — BLUE HOUR CONSOLE ═══════════════ -->
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Blue Hour Console — instrument-panel restraint, violet glow, grotesque-led</div>
+<div class="dv-card" style="width:1180px;background:#17141c">
+<div style="display:flex;gap:36px;padding:36px">
+
+  <!-- direction rationale column -->
+  <div style="width:250px;flex:none;display:flex;flex-direction:column;gap:26px">
+    <div>
+      <div style="font:700 26px/1.1 'Space Grotesk',sans-serif;color:#f2eef7;letter-spacing:-0.01em">Blue Hour Console</div>
+      <p style="font:400 12.5px/1.65 system-ui,sans-serif;color:#9b93ab;margin:10px 0 0">The app is a piece of gear. Teenage Engineering restraint: matte dark surfaces, one glowing control, everything else recedes. The chord symbol is the only serif in the room — musical content gets the warm voice, the machine stays cool.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Space Grotesk',monospace;letter-spacing:.14em;color:#9b93ab">PALETTE</div>
+      <div style="display:flex;gap:6px">
+        <div style="width:44px;height:44px;border-radius:8px;background:#17141c;border:1px solid rgba(255,255,255,.12)"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#211d29"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#a58fe0"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#f2eef7"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#9b93ab"></div>
+      </div>
+      <div style="font:400 10.5px/1.5 ui-monospace,monospace;color:#6f6880">#17141C · #211D29 · #A58FE0 · #F2EEF7 · #9B93AB</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Space Grotesk',monospace;letter-spacing:.14em;color:#9b93ab">TYPE</div>
+      <div style="font:600 20px/1.2 'Space Grotesk',sans-serif;color:#f2eef7">Space Grotesk<span style="color:#9b93ab;font-weight:400"> — UI, numbers, labels</span></div>
+      <div style="font:500 24px/1.2 'Newsreader',serif;font-style:italic;color:#f2eef7">Newsreader<span style="color:#9b93ab;font-size:16px"> — chord symbols &amp; musical content only</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Space Grotesk',monospace;letter-spacing:.14em;color:#9b93ab">SOUND HAS COLOR — quality hues (seed)</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:#211d29"><div style="width:9px;height:9px;border-radius:50%;background:#d9a854"></div><span style="font:500 11px 'Newsreader',serif;font-style:italic;color:#f2eef7">maj7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:#211d29"><div style="width:9px;height:9px;border-radius:50%;background:#7d99c9"></div><span style="font:500 11px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:#211d29"><div style="width:9px;height:9px;border-radius:50%;background:#cf7a52"></div><span style="font:500 11px 'Newsreader',serif;font-style:italic;color:#f2eef7">7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:#211d29"><div style="width:9px;height:9px;border-radius:50%;background:#b07fae"></div><span style="font:500 11px 'Newsreader',serif;font-style:italic;color:#f2eef7">m7♭5</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:#211d29"><div style="width:9px;height:9px;border-radius:50%;background:#8b8fa3"></div><span style="font:500 11px 'Newsreader',serif;font-style:italic;color:#f2eef7">dim7</span></div>
+      </div>
+      <div style="font:400 11px/1.5 system-ui,sans-serif;color:#6f6880">Tensions shift the hue's temperature (♭9 darkens toward red, ♯11 cools). Full system sheet comes with the next pass.</div>
+    </div>
+  </div>
+
+  <!-- phones -->
+  <div style="display:flex;gap:28px">
+    <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+      <div data-screen-label="1a Home" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 60px;box-sizing:border-box">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <div style="font:700 13px 'Space Grotesk',sans-serif;letter-spacing:.22em;color:#f2eef7">CHANGES</div>
+          <div style="font:500 12px 'Space Grotesk',sans-serif;color:#6f6880">TUE JUL 7</div>
+        </div>
+        <div style="margin-top:52px">
+          <div style="font:500 13px 'Space Grotesk',sans-serif;letter-spacing:.1em;color:#9b93ab">TODAY</div>
+          <div style="font:600 30px/1.15 'Space Grotesk',sans-serif;color:#f2eef7;margin-top:10px;letter-spacing:-0.01em">18 min<span style="color:#6f6880"> · </span>Rung 4</div>
+          <div style="font:500 17px/1.4 'Newsreader',serif;font-style:italic;color:#a58fe0;margin-top:6px">Chord qualities · 12 reviews due</div>
+        </div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center">
+          <div style="width:190px;height:190px;border-radius:50%;background:radial-gradient(circle at 50% 42%, #2b2436, #211d29 70%);box-shadow:0 0 60px rgba(165,143,224,.28), inset 0 1px 0 rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border:1px solid rgba(165,143,224,.35)">
+            <svg width="52" height="56" viewBox="0 0 52 56"><path d="M6 4 L48 28 L6 52 Z" fill="#a58fe0"></path></svg>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <div style="padding:9px 18px;border-radius:99px;background:#211d29;font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">10</div>
+          <div style="padding:9px 18px;border-radius:99px;background:#211d29;font:600 14px 'Space Grotesk',sans-serif;color:#f2eef7;border:1px solid rgba(165,143,224,.5)">18</div>
+          <div style="padding:9px 18px;border-radius:99px;background:#211d29;font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">25</div>
+          <div style="width:1px;background:rgba(255,255,255,.1);margin:0 4px"></div>
+          <div style="padding:9px 18px;border-radius:99px;background:#211d29;font:500 14px 'Space Grotesk',sans-serif;color:#9b93ab">shadow</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)">
+          <div><div style="font:600 20px 'Space Grotesk',sans-serif;color:#f2eef7">142 min</div><div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#6f6880;margin-top:2px">THIS WEEK</div></div>
+          <div style="text-align:right"><div style="font:600 20px 'Space Grotesk',sans-serif;color:#f2eef7">m7♭5 / dim7</div><div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#6f6880;margin-top:2px">WEAKEST PAIR</div></div>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+      <div data-screen-label="1a Answer reveal" style="height:100%;background:#17141c;display:flex;flex-direction:column;padding:78px 28px 48px;box-sizing:border-box">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:#211d29"><div style="width:8px;height:8px;border-radius:50%;background:#d9a854"></div><span style="font:600 13px 'Space Grotesk',sans-serif;color:#f2eef7">in E♭</span></div>
+          <div style="font:500 13px 'Space Grotesk',sans-serif;color:#6f6880">7 / 22 · 11:24 left</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px">
+          <div style="font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#9b93ab">QUALITY OF THIS CHORD</div>
+          <div style="font:500 92px/1 'Newsreader',serif;font-style:italic;color:#f2eef7;letter-spacing:-0.02em">G7<span style="color:#cf7a52">♭9</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:#cf7a52;box-shadow:0 0 14px rgba(207,122,82,.7)"></div><span style="font:500 16px 'Newsreader',serif;font-style:italic;color:#9b93ab">dominant, flat nine</span></div>
+          <div style="width:120px;height:3px;border-radius:2px;background:#211d29;margin-top:14px;overflow:hidden"><div style="width:62%;height:100%;background:#a58fe0"></div></div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1;height:104px;border-radius:22px;background:#211d29;border:1px solid rgba(165,143,224,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font:600 19px 'Space Grotesk',sans-serif;color:#f2eef7">Got it</div>
+            <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×1</div>
+          </div>
+          <div style="flex:1;height:104px;border-radius:22px;background:#211d29;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font:600 19px 'Space Grotesk',sans-serif;color:#9b93ab">Missed it</div>
+            <div style="font:500 11px 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#6f6880">TAP EARBUD ×2</div>
+          </div>
+        </div>
+      </div>
+    </x-import>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════ 1b — REAL BOOK, AFTER DARK ═══════════════ -->
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Real Book, After Dark — chart-paper editorial, serif-forward, ink accents</div>
+<div class="dv-card" style="width:1180px;background:#191510">
+<div style="display:flex;gap:36px;padding:36px">
+
+  <!-- direction rationale column -->
+  <div style="width:250px;flex:none;display:flex;flex-direction:column;gap:26px">
+    <div>
+      <div style="font:600 26px/1.1 'Spectral',serif;color:#ece4d3;letter-spacing:-0.01em">Real Book, After Dark</div>
+      <p style="font:400 12.5px/1.65 system-ui,sans-serif;color:#a2957f;margin:10px 0 0">The app is a chart on the stand at a dim gig. Cream ink on warm brown-black, hairline bar-rules, serif-forward — musical content set like a lead sheet. Violet is the pencil you annotate with: sparse, meaningful.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Archivo',sans-serif;letter-spacing:.14em;color:#a2957f">PALETTE</div>
+      <div style="display:flex;gap:6px">
+        <div style="width:44px;height:44px;border-radius:8px;background:#191510;border:1px solid rgba(236,228,211,.15)"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#231d15"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#9d84d6"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#ece4d3"></div>
+        <div style="width:44px;height:44px;border-radius:8px;background:#a2957f"></div>
+      </div>
+      <div style="font:400 10.5px/1.5 ui-monospace,monospace;color:#6e6350">#191510 · #231D15 · #9D84D6 · #ECE4D3 · #A2957F</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Archivo',sans-serif;letter-spacing:.14em;color:#a2957f">TYPE</div>
+      <div style="font:600 24px/1.2 'Spectral',serif;color:#ece4d3">Spectral<span style="color:#a2957f;font-size:16px;font-weight:400"> — musical content, headings</span></div>
+      <div style="font:600 18px/1.2 'Archivo',sans-serif;color:#ece4d3">Archivo<span style="color:#a2957f;font-weight:400"> — UI labels, numbers</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 10px/1 'Archivo',sans-serif;letter-spacing:.14em;color:#a2957f">SOUND HAS COLOR — quality hues (seed)</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(236,228,211,.18);border-radius:3px"><div style="width:9px;height:9px;border-radius:50%;background:#d9a854"></div><span style="font:600 11px 'Spectral',serif;color:#ece4d3">maj7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(236,228,211,.18);border-radius:3px"><div style="width:9px;height:9px;border-radius:50%;background:#7d99c9"></div><span style="font:600 11px 'Spectral',serif;color:#ece4d3">m7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(236,228,211,.18);border-radius:3px"><div style="width:9px;height:9px;border-radius:50%;background:#cf7a52"></div><span style="font:600 11px 'Spectral',serif;color:#ece4d3">7</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(236,228,211,.18);border-radius:3px"><div style="width:9px;height:9px;border-radius:50%;background:#b07fae"></div><span style="font:600 11px 'Spectral',serif;color:#ece4d3">m7♭5</span></div>
+        <div style="display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid rgba(236,228,211,.18);border-radius:3px"><div style="width:9px;height:9px;border-radius:50%;background:#8b8fa3"></div><span style="font:600 11px 'Spectral',serif;color:#ece4d3">dim7</span></div>
+      </div>
+      <div style="font:400 11px/1.5 system-ui,sans-serif;color:#6e6350">Same hue system as <a href="#1a" style="color:#9d84d6">1a</a> — the visual language is direction-independent; only the typography and surfaces change.</div>
+    </div>
+  </div>
+
+  <!-- phones -->
+  <div style="display:flex;gap:28px">
+    <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+      <div data-screen-label="1b Home" style="height:100%;background:#191510;display:flex;flex-direction:column;padding:78px 30px 60px;box-sizing:border-box">
+        <div style="text-align:center;border-bottom:1px solid rgba(236,228,211,.25);padding-bottom:18px">
+          <div style="font:600 11px 'Archivo',sans-serif;letter-spacing:.28em;color:#a2957f">CHANGES</div>
+          <div style="font:600 34px/1.1 'Spectral',serif;font-style:italic;color:#ece4d3;margin-top:10px">Today's Session</div>
+          <div style="font:500 13px 'Archivo',sans-serif;color:#a2957f;margin-top:8px">TUE JUL 7 · RUNG 4 — CHORD QUALITIES</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:20px 6px;border-bottom:1px solid rgba(236,228,211,.12)">
+          <span style="font:500 16px 'Spectral',serif;font-style:italic;color:#ece4d3">18 minutes</span>
+          <span style="font:500 16px 'Spectral',serif;font-style:italic;color:#ece4d3">12 reviews due</span>
+          <span style="font:500 16px 'Spectral',serif;font-style:italic;color:#9d84d6">3 new</span>
+        </div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center">
+          <div style="width:180px;height:180px;border-radius:50%;background:#ece4d3;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(0,0,0,.5)">
+            <svg width="48" height="52" viewBox="0 0 52 56"><path d="M8 4 L48 28 L8 52 Z" fill="#191510"></path></svg>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:26px;padding-bottom:26px">
+          <span style="font:500 14px 'Archivo',sans-serif;color:#a2957f;border-bottom:1px solid transparent">10′</span>
+          <span style="font:600 14px 'Archivo',sans-serif;color:#ece4d3;border-bottom:2px solid #9d84d6;padding-bottom:3px">18′</span>
+          <span style="font:500 14px 'Archivo',sans-serif;color:#a2957f">25′</span>
+          <span style="font:500 14px 'Archivo',sans-serif;color:#a2957f;font-style:italic">shadow mode</span>
+        </div>
+        <div style="border-top:1px solid rgba(236,228,211,.25);padding-top:16px;display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font:400 13px 'Spectral',serif;font-style:italic;color:#a2957f">142 min this week</span>
+          <span style="font:400 13px 'Spectral',serif;font-style:italic;color:#a2957f">weakest: m7♭5 vs dim7</span>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+      <div data-screen-label="1b Answer reveal" style="height:100%;background:#191510;display:flex;flex-direction:column;padding:78px 30px 48px;box-sizing:border-box">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(236,228,211,.25);padding-bottom:14px">
+          <span style="font:600 15px 'Spectral',serif;font-style:italic;color:#ece4d3">in E♭ major</span>
+          <span style="font:500 12px 'Archivo',sans-serif;letter-spacing:.06em;color:#a2957f">7 OF 22 · 11:24 LEFT</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;position:relative">
+          <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(236,228,211,.1)"></div>
+          <div style="position:absolute;left:0;top:calc(50% - 34px);bottom:auto;width:1px;height:68px;background:rgba(236,228,211,.2)"></div>
+          <div style="position:absolute;right:0;top:calc(50% - 34px);width:1px;height:68px;background:rgba(236,228,211,.2)"></div>
+          <div style="font:500 12px 'Archivo',sans-serif;letter-spacing:.18em;color:#a2957f">QUALITY OF THIS CHORD</div>
+          <div style="font:600 96px/1 'Spectral',serif;color:#ece4d3;letter-spacing:-0.02em;position:relative;z-index:1;background:#191510;padding:0 22px">G7<span style="color:#cf7a52">♭9</span></div>
+          <div style="font:500 17px 'Spectral',serif;font-style:italic;color:#a2957f">dominant, flat nine — <span style="color:#9d84d6">the ♭9 leans on the fifth of the key</span></div>
+        </div>
+        <div style="display:flex">
+          <div style="flex:1;padding:26px 0;text-align:center;border-top:2px solid #ece4d3">
+            <div style="font:600 20px 'Spectral',serif;font-style:italic;color:#ece4d3">Got it</div>
+            <div style="font:500 10.5px 'Archivo',sans-serif;letter-spacing:.1em;color:#6e6350;margin-top:4px">TAP EARBUD ×1</div>
+          </div>
+          <div style="width:1px;background:rgba(236,228,211,.2)"></div>
+          <div style="flex:1;padding:26px 0;text-align:center;border-top:1px solid rgba(236,228,211,.25)">
+            <div style="font:500 20px 'Spectral',serif;font-style:italic;color:#a2957f">Missed it</div>
+            <div style="font:500 10.5px 'Archivo',sans-serif;letter-spacing:.1em;color:#6e6350;margin-top:4px">TAP EARBUD ×2</div>
+          </div>
+        </div>
+      </div>
+    </x-import>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#1a">1a</a>, build the full Pocket Session flow" · "<a class="dv-oid" href="#1b">1b</a> but with <a class="dv-oid" href="#1a">1a</a>'s glowing play button" · "show both reveal screens in light mode"</p>
+</section>
+
+</x-dc>
+</body>
+</html>
