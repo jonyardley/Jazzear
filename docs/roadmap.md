@@ -15,13 +15,15 @@ Workflow → Always).
 - [x] MVP implementation plan (`docs/specs/mvp-plan.md` — milestones M0–M6)
 - [ ] M0 — Scaffold: Crux workspace, xcodegen iOS project, justfile, CI,
       `Theme.swift` from the design token sheet, bindings walking skeleton
-- [ ] M1 — Audio spike: `PlayScore` → AVAudioEngine sampler, background
-      audio, Now Playing + remote commands. **Make-or-break; go/no-go gate
-      before any feature work** (exit criteria in the plan)
+- [ ] M1 — Audio spike: `PlayScore` → AVAudioEngine sampler; glitch-free,
+      sample-accurate tap-driven playback; interruption + route-change
+      handling. **Make-or-break; go/no-go gate before any feature work**
+      (exit criteria in the plan)
 
 ## Phase 1 — MVP: Pocket Session, Levels 0–2
 
-Functional degree training, hands-free. Beats Functional Ear Trainer +
+Functional degree training — foreground, touch-driven, user-paced (every
+step a tap: start, reveal, grade). Beats Functional Ear Trainer +
 Sonofield for a jazz user on its own. Build order and decisions:
 `docs/specs/mvp-plan.md` (milestones M2–M6).
 
@@ -30,9 +32,10 @@ Sonofield for a jazz user on its own. Build order and decisions:
 - [ ] Exercise generator + session state machine (context → question →
       thinking gap → reveal; Banacos error loop)
 - [ ] SRS scheduler (FSRS-style) + GRDB persistence (sync-ready schema)
-- [ ] Pocket Session UI: pre-session, in-session states, lock screen /
-      Dynamic Island, earbud-tap grading, aural reveal (resolution /
-      decomposition playback — no TTS; lock-screen title shows the answer)
+- [ ] Pocket Session UI: pre-session, in-session states, on-screen touch
+      pacing (tap to start, tap to reveal, tap to grade — the grade tap
+      advances; no timers, no auto-continue), aural + on-screen reveal
+      (resolution / decomposition playback — no TTS)
 - [ ] Session recap + Ladder/progress hub (Levels 0–2 only)
 - [ ] Onboarding + placement test (rungs 0–2)
 
@@ -75,5 +78,15 @@ instrument is the production channel.)*
 
 Accounts, server/sync, subscriptions, social/leaderboards, Android/web
 (the Crux core keeps the option open; not planned). **Voice interaction in
-both directions** — no text-to-speech answers, no sung-answer grading
-(dropped 2026-07; aural reveal + instrument I/O replace them).
+both directions** — no text-to-speech answers, no sung-answer grading, no
+voice commands or speech recognition (dropped 2026-07; aural reveal +
+instrument I/O replace them). Audio is output-only music; every input is a
+touch on the screen (earbud-tap control is part of the deferred pocket
+mode below).
+
+**Deferred, not rejected** (2026-07): the auto-paced + hands-free bundle
+("pocket mode") — timed reveal / auto-continue, passive "shadow mode", and
+the pocket layer (background audio, lock screen / Now Playing / Live
+Activity, earbud-tap control). One post-MVP exploration, revisited after
+dogfooding the manual loop. The MVP is foreground, screen in hand; every
+step is a deliberate tap (start, reveal, grade).

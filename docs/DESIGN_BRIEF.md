@@ -1,10 +1,10 @@
 # Design Brief — "Changes" (working title)
 
-*A hands-free jazz ear training app for iOS. Brief for design exploration / journey mockups, v0.1 — 2026-07-07.*
+*A touch-driven, audio-first jazz ear training app for iOS. Brief for design exploration / journey mockups, v0.1 — 2026-07-07.*
 
 ## What we're building
 
-An iOS app that trains a jazz pianist's ear — hearing notes against a key, jazz chord qualities, and chord progressions — designed for **commute-length sessions with headphones, phone in pocket**. The pedagogy is "functional-first": every sound is heard against a key center, mistakes trigger comparison-replay rather than "wrong, next," and a spaced-repetition engine decides what you practice each day.
+An iOS app that trains a jazz pianist's ear — hearing notes against a key, jazz chord qualities, and chord progressions — designed for **commute-length sessions with headphones, phone in hand** *(the phone-in-pocket hands-free variant is deferred post-MVP)*. The pedagogy is "functional-first": every sound is heard against a key center, mistakes trigger comparison-replay rather than "wrong, next," and a spaced-repetition engine decides what you practice each day.
 
 **The one-liner:** the podcast-app-simple ear trainer that teaches you to hear jazz changes on the train.
 
@@ -19,13 +19,14 @@ An iOS app that trains a jazz pianist's ear — hearing notes against a key, jaz
 
 ## Design principles (non-negotiable)
 
-1. **Audio-first, screen-optional.** Every core exercise must be completable with the phone in a pocket. Screens support and enrich, never gate. Think "podcast app with a brain," not "quiz app with audio."
+1. **Audio-first.** The content is sound; the screen is a thin, calm shell around listening. Audio is **output-only** (music — cadences, chords, examples — never speech, in any form); every input is a **touch on the screen**. No voice in, no voice out. *(The original pocket/hands-free framing — completable with the phone in a pocket, earbud taps — is deferred post-MVP; see principle 8.)*
 2. **One thumb, glanceable.** When the screen *is* used (crowded train, standing), everything reachable one-handed; state understandable in a half-second glance.
 3. **Calm confidence over gamification.** No lives, leagues, XP explosions, or streak-panic. Progress = mastery and minutes of real work. Celebrations are understated and jazz-cool, not confetti.
 4. **Sound has visual character.** Keys, chord qualities, and tension colors (b9, #13…) are the content — give them a consistent, learnable visual language (color/shape) that reinforces the ear learning rather than decorating it.
 5. **Errors are the curriculum.** A miss opens a comparison moment (replay/alternate the two confused sounds). Design this as the most cared-for interaction in the app — it should feel like a patient teacher, not a penalty.
 6. **Dark-mode native.** Primary contexts are trains, evening pianos, pockets. Design dark-first; light mode secondary.
 7. **Sound before sign.** Visualizations of musical content (keyboard diagrams, guide-tone contours, lead-sheet bars) appear only at the **answer reveal** and in review/progress screens — never while the user is listening or answering. The ear works first; the eye confirms. No engraved staff notation anywhere — chord symbols, mini keyboard diagrams, and simple voice-leading contour lines are the vocabulary.
+8. **User-paced — every step is a tap (2026-07 decision).** Tap to start an item, tap to reveal (the thinking gap is open-ended — no countdown), tap to grade; the grade tap doubles as "next". No timed reveal, no auto-continue, no passive auto-play in the initial build — auto-paced flow, shadow mode, and the hands-free pocket layer (lock screen, earbud taps) are one bundled later exploration.
 
 **Feel/mood:** late-night jazz club meets modern instrument. Warm darks, one or two rich accent hues, generous type, tactile controls. References to riff on: Teenage Engineering restraint, Moleskine/real-book texture cues, the calm of Apple Podcasts/Overcast, the focus of Endel. Avoid: cartoon mascots, arcade UI, music-school clip-art (treble clefs everywhere).
 
@@ -33,11 +34,11 @@ An iOS app that trains a jazz pianist's ear — hearing notes against a key, jaz
 
 ### Journey 1 — Pocket Session (the flagship; design this first)
 
-Daily hands-free training loop. The user experience is mostly *auditory*; the design task is the thin visual shell around it plus the audio-flow choreography.
+Daily training loop — user-paced: every step (start, reveal, grade) is a deliberate on-screen tap. The user experience is mostly *auditory*; the design task is the thin visual shell around it plus the audio-flow choreography.
 
-1. **Start:** open app → today's session is front and center ("18 min · Level 4: Chord qualities · 12 reviews due"). One giant play button. Optional: duration override (10/15/20), "shadow mode" toggle (listen-only, no grading — for zero-attention days).
-2. **In session (screen locked / in pocket):** lock-screen & Dynamic Island presence like a podcast: exercise counter, elapsed/remaining, pause. Earbud/tap gestures = "got it" / "missed it." The answer arrives **aurally, never as synthesized speech** (2026-07 decision — no TTS): a degree resolves stepwise to the tonic, a chord replays as its decomposition arpeggio (bass → 3rd → 7th → color), and the lock-screen title updates ("It was: ♭3") for a pocket glance.
-3. **In session (screen open):** a calm "now playing" canvas: current key, what's being asked (e.g., "Quality of this chord?"), a subtle countdown of the thinking gap, then the revealed answer ("G7♭9") with its visual identity. Big tap zones: **Got it / Missed it**.
+1. **Start:** open app → today's session is front and center ("18 min · Level 4: Chord qualities · 12 reviews due"). One giant play button. Optional: duration override (10/15/20). *(A "shadow mode" listen-only toggle was mocked but is deferred post-MVP along with auto-paced flow.)*
+2. **In session (deferred layer — pocket mode, post-MVP):** the lock-screen & Dynamic Island presence, earbud-tap grading, and lock-screen answer title all belong to the deferred hands-free mode; in the MVP the session lives on-screen. What stays regardless: the answer arrives **aurally, never as synthesized speech** (2026-07 decision — no voice audio of any kind): a degree resolves stepwise to the tonic, a chord replays as its decomposition arpeggio (bass → 3rd → 7th → color), alongside the on-screen answer.
+3. **In session (screen open — this IS the MVP session):** a calm "now playing" canvas: current key, what's being asked (e.g., "Quality of this chord?"), a "tap to reveal" affordance for the open-ended thinking gap, then the revealed answer ("G7♭9") with its visual identity. Big tap zones: **Got it / Missed it** — tapping either is also what advances to the next item (manual pacing; principle 8).
 4. **Miss flow (the Banacos loop):** the app alternates the missed sound with its context or its confusable twin ("m7♭5 vs dim7 — hear the 7th move"). Visualize the comparison simply (two cards A/B-ing). User exits the loop when ready.
 5. **Session end:** 30-second recap — items mastered, weakest confusion pair, what's due tomorrow, rung progress. One line of genuine encouragement, then a "tonight at the piano" nudge (ties to Journey 3).
 
@@ -68,7 +69,7 @@ Blind transcription, productized: pick a standard → hear its changes in jazz-t
 
 1. Home / today's session
 2. Pocket Session: pre-session → playing → answer reveal → miss/comparison → complete (5–6 states)
-3. Lock screen / Dynamic Island treatment
+3. Lock screen / Dynamic Island treatment *(deferred — pocket mode, post-MVP)*
 4. Onboarding (3–4 screens) + placement result ("you're here" ladder moment)
 5. Ladder / progress hub + one item-detail
 6. Tune Workbench: tune list + the self-revealing lead sheet
@@ -78,7 +79,7 @@ Blind transcription, productized: pick a standard → hear its changes in jazz-t
 
 - iOS 17+, SwiftUI. Native components welcome; custom where the audio-first concept demands it.
 - Must feel great one-handed on a small phone (train grip); test layouts at iPhone mini width.
-- Background audio + lock-screen controls are core, not an afterthought — the lock screen *is* a primary UI.
+- Background audio + lock-screen controls belong to the deferred pocket mode, not the MVP — MVP sessions are foreground, screen in hand.
 - Offline-first, no accounts. One-time purchase (no paywall screens needed yet; no subscription upsell patterns).
 - Music rendering: chord symbols (G7♭9, Fmaj7♯11), mini keyboard diagrams, voice-leading contours, and occasional lead-sheet bars — no full engraved notation, and nothing notational during listening/answering (principle 7).
 
