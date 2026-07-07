@@ -2,14 +2,23 @@
 
 > Last reviewed: 2026-07-07.
 
-> ## ⚠️ PROJECT STATUS: GREENFIELD — docs only, no code yet
+> ## ⚠️ PROJECT STATUS: PRE-CODE — docs + design complete, next action is M0
 >
-> The repo currently contains product docs (`docs/`) and this file. The
-> architecture below is the **intended** design, carried over from lessons
-> learned on [intrada](https://github.com/jonyardley/intrada) (same
-> Crux + SwiftUI stack). As scaffolding lands, update this banner and replace
-> "planned" sections with reality. When docs and code disagree, the code is
-> reality and this file has a bug — fix it.
+> No code exists yet. What does exist: product docs (`docs/`), a completed
+> Claude Design pass (`design/` — read `design/README.md`), and the
+> implementation plan (`docs/specs/mvp-plan.md`, milestones M0–M6 with
+> decisions already taken). **Start with M0 (scaffold), then M1 (audio spike
+> — the explicit go/no-go gate).** The architecture below is the intended
+> design, carried over from lessons learned on
+> [intrada](https://github.com/jonyardley/intrada) (same Crux + SwiftUI
+> stack). As code lands, update this banner and replace "planned" sections
+> with reality. When docs and code disagree, the code is reality and this
+> file has a bug — fix it.
+>
+> One superseded-docs note: `design/README.md` is a historical handoff record
+> and still mentions spoken answers; **voice I/O (TTS + sung grading) was cut
+> 2026-07** — `docs/specs/mvp-plan.md` decision 5 is authoritative (aural
+> reveal + Now Playing title instead).
 
 ## Project Overview
 

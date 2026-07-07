@@ -40,5 +40,9 @@ Offline-first, no accounts, one-time purchase.
 
 ## Status
 
-Greenfield — product docs only; scaffolding is the next step. See
+Pre-code. Complete so far: research, concept, design brief, a full Claude
+Design pass ([design/](design/README.md) — direction "Blue Hour Console",
+including a choreography prototype whose state machine is product spec), and
+the implementation plan ([docs/specs/mvp-plan.md](docs/specs/mvp-plan.md)).
+Next: milestone M0 (scaffold), then M1 (audio spike — go/no-go gate). See
 [docs/roadmap.md](docs/roadmap.md).
