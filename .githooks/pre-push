@@ -1,0 +1,5 @@
+#!/bin/sh
+# CLAUDE.md: run fmt + clippy locally before pushing — a red CI roundtrip
+# costs more than the local check. Installed via `just setup`.
+set -e
+just pre-push

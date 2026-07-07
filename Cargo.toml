@@ -1,0 +1,46 @@
+[workspace]
+members = ["crates/changes-core", "crates/changes-ffi"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+# Mirrors the strictest dependency MSRV (crux_core 0.19 requires 1.90);
+# clippy::incompatible_msrv enforces it via -D warnings.
+rust-version = "1.90"
+publish = false
+
+[workspace.dependencies]
+# facet (typegen reflection) is deliberately NOT pinned here yet — it becomes
+# a direct dep at M0-iOS; derive its pin then from `cargo tree -i facet` so
+# it matches what crux_core resolves (see .github/dependabot.yml).
+crux_core = "0.19"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+ulid = "1"
+chrono = { version = "0.4", features = ["serde"] }
+bincode = "1"
+
+changes-core = { path = "crates/changes-core" }
+
+[workspace.lints.rust]
+unsafe_code = "warn"
+
+[workspace.lints.clippy]
+# CLAUDE.md: no unwrap() without written justification. Per-site escapes use
+# #[allow(clippy::unwrap_used)] plus a WHY comment. Tests are exempt via
+# clippy.toml (allow-unwrap-in-tests).
+unwrap_used = "deny"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+dbg_macro = "warn"
+print_stdout = "warn"
+print_stderr = "warn"
+
+[profile.dev.package."*"]
+debug = false
+
+[profile.dev]
+debug = "line-tables-only"
