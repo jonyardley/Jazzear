@@ -1,0 +1,19 @@
+[package]
+name = "changes-core"
+description = "Pure Crux core for Changes — all logic, no I/O"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+crux_core = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+# The FFI bridge is positional bincode (non-self-describing); every
+# bridge-crossing type gets a bincode round-trip test (intrada #846).
+bincode = { workspace = true }
+
+[lints]
+workspace = true

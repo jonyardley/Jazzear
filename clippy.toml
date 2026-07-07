@@ -1,0 +1,7 @@
+# Tests may unwrap/expect/panic freely — the strict lints in Cargo.toml
+# [workspace.lints] target production code paths only.
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-panic-in-tests = true
+allow-dbg-in-tests = true
+allow-print-in-tests = true

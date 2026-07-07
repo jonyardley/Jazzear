@@ -13,8 +13,16 @@ Workflow → Always).
       prototype (`design/` — see `design/README.md`; direction 1a "Blue Hour
       Console")
 - [x] MVP implementation plan (`docs/specs/mvp-plan.md` — milestones M0–M6)
-- [ ] M0 — Scaffold: Crux workspace, xcodegen iOS project, justfile, CI,
-      `Theme.swift` from the design token sheet, bindings walking skeleton
+- [ ] M0 — Scaffold
+  - [x] Rust workspace + quality rails (2026-07-07): `changes-core` crux
+        walking skeleton (`Event::Ping → ViewModel`, bincode round-trip
+        tests), `changes-ffi` placeholder, strict lints (unwrap denied),
+        pinned toolchain, cargo-deny, CI (fmt/clippy/test/deny/gitleaks →
+        required "CI OK"), justfile + pre-push hook, dependabot (cargo)
+  - [ ] xcodegen iOS project, `Theme.swift` from the design token sheet,
+        bundled fonts
+  - [ ] Bindings pipeline (uniffi + typegen): `Event::Ping → ViewModel`
+        through a real bridge round-trip
 - [ ] M1 — Audio spike: `PlayScore` → AVAudioEngine sampler; glitch-free,
       sample-accurate tap-driven playback; interruption + route-change
       handling. **Make-or-break; go/no-go gate before any feature work**

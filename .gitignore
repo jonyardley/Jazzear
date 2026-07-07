@@ -15,8 +15,9 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
-# Generated bindings (regenerated from core; commit policy TBD at scaffold time)
-# ios/generated/
+# Generated bindings — build output, never source (CLAUDE.md: bindings are a
+# build precondition; regenerate, don't hand-edit or commit)
+ios/generated/
 
 # Environment
 .env

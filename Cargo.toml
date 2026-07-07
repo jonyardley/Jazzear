@@ -1,0 +1,45 @@
+[workspace]
+members = ["crates/changes-core", "crates/changes-ffi"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+publish = false
+
+[workspace.dependencies]
+# crux_core 0.19 pulls facet 0.44 for typegen reflection — the facet pin must
+# track whatever crux_core resolves, or derive(Facet) impls mismatch the
+# typegen (intrada lesson).
+crux_core = "0.19"
+facet = "0.44"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+ulid = "1"
+chrono = { version = "0.4", features = ["serde"] }
+bincode = "1"
+
+changes-core = { path = "crates/changes-core" }
+
+[workspace.lints.rust]
+unsafe_code = "warn"
+
+[workspace.lints.clippy]
+# CLAUDE.md: no unwrap() without written justification. Per-site escapes use
+# #[allow(clippy::unwrap_used)] plus a WHY comment. Tests are exempt via
+# clippy.toml (allow-unwrap-in-tests).
+unwrap_used = "deny"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+dbg_macro = "warn"
+print_stdout = "warn"
+print_stderr = "warn"
+
+[profile.dev.package."*"]
+debug = false
+
+[profile.dev]
+debug = "line-tables-only"

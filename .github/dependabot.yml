@@ -5,14 +5,18 @@ updates:
     schedule:
       interval: "weekly"
 
-  # M0: uncomment when the Cargo workspace lands. Keep the crux group —
-  # crux_core/crux_macros (and friends) are a matched set; skewed
-  # single-crate bumps break trait bounds (intrada #970).
-  # - package-ecosystem: "cargo"
-  #   directory: "/"
-  #   schedule:
-  #     interval: "weekly"
-  #   groups:
-  #     crux:
-  #       patterns:
-  #         - "crux*"
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # crux crates are a matched set; skewed single-crate bumps break trait
+    # bounds (intrada #970). facet must track what crux_core resolves.
+    groups:
+      crux:
+        patterns:
+          - "crux*"
+    ignore:
+      - dependency-name: "facet"
+      - dependency-name: "facet-*"
+    # When uniffi lands (M0-iOS): pin + ignore uniffi* here too — it must
+    # match cargo-swift's bundled bindgen (intrada #966/#968).

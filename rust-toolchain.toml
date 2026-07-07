@@ -1,0 +1,6 @@
+# Pinned for reproducible local + CI builds; bump deliberately (it's not
+# dependabot-managed). rust-version in Cargo.toml is the *minimum*; this is
+# the version everything actually builds with.
+[toolchain]
+channel = "1.93.1"
+components = ["rustfmt", "clippy"]

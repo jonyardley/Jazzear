@@ -2,15 +2,18 @@
 
 > Last reviewed: 2026-07-07.
 
-> ## ⚠️ PROJECT STATUS: PRE-CODE — docs + design complete, next action is M0
+> ## ⚠️ PROJECT STATUS: M0 in progress — quality rails landed, iOS scaffold next
 >
-> No code exists yet. What does exist: product docs (`docs/`), a completed
-> Claude Design pass (`design/` — read `design/README.md`), and the
-> implementation plan (`docs/specs/mvp-plan.md`, milestones M0–M6 with
-> decisions already taken). **Start with M0 (scaffold), then M1 (audio spike
-> — the explicit go/no-go gate).** The architecture below is the intended
-> design, carried over from lessons learned on
-> [intrada](https://github.com/jonyardley/intrada) (same Crux + SwiftUI
+> What exists: product docs (`docs/`), a completed Claude Design pass
+> (`design/` — read `design/README.md`), the implementation plan
+> (`docs/specs/mvp-plan.md`, milestones M0–M6, decisions taken), and the
+> **Rust workspace with all quality gates live** (crux walking skeleton in
+> `crates/changes-core`, strict lints, cargo-deny, CI, justfile — run
+> `just setup` once per clone). **Next: M0-iOS** (xcodegen project,
+> `Theme.swift` token sheet, uniffi+typegen bindings proving
+> `Event::Ping → ViewModel` through a real bridge round-trip), **then M1
+> (audio spike — the explicit go/no-go gate).** Architecture carries lessons
+> from [intrada](https://github.com/jonyardley/intrada) (same Crux + SwiftUI
 > stack). As code lands, update this banner and replace "planned" sections
 > with reality. When docs and code disagree, the code is reality and this
 > file has a bug — fix it.
@@ -69,16 +72,16 @@ manual, foreground-first decisions (see the README's banner).
 The active implementation plan is `docs/specs/mvp-plan.md`. Design tokens
 map 1:1 into `Theme.swift` (`Changes*` namespaces) at scaffold time.
 
-## Project Structure (planned)
+## Project Structure
 
 ```text
 crates/
-  changes-core/          # Pure Crux core — ALL logic, no I/O:
+  changes-core/          # Pure Crux core — ALL logic, no I/O:  [exists]
                          #   theory engine (keys, chords, voicings, cells)
                          #   exercise generator, session state machine
                          #   SRS scheduler, grading, pitch analysis
-  changes-ffi/           # UniFFI / typegen bridge crate
-ios/                     # SwiftUI shell (Xcode project via xcodegen)
+  changes-ffi/           # UniFFI / typegen bridge crate  [exists; wiring = M0-iOS]
+ios/                     # SwiftUI shell (xcodegen)  [lands with M0-iOS]
   Changes/               #   app source; generated bindings under ios/generated/
 design/                  # Claude Design mockups + design system reference
 docs/                    # Product docs: CONCEPT, RESEARCH, DESIGN_BRIEF, roadmap
@@ -105,19 +108,24 @@ docs/                    # Product docs: CONCEPT, RESEARCH, DESIGN_BRIEF, roadma
 
 ## Commands
 
-To be established with the first scaffold. Target set (names match intrada so
-muscle memory transfers):
-
 ```bash
-cargo fmt --check          # must pass before commit AND push
-cargo clippy -- -D warnings
-cargo test                 # core is pure — the whole brain tests in seconds
-just ios                   # regen bindings if core changed + open Xcode
-just ios-run               # build + launch on simulator + screenshot
+just setup                 # once per clone: installs the pre-push hook
+just ci                    # full CI mirror: fmt-check, clippy, test, deny, links
+just pre-push              # fast gates (fmt-check + clippy + test) — the hook runs this
+just fmt / clippy / test / deny / links   # individual gates
+just ios / ios-run / ios-gen / ios-logs   # stubs until M0-iOS lands
 ```
 
-Run fmt + clippy locally *before pushing*, not just before committing —
-a red CI roundtrip costs more than the local check.
+CI runs the same gates plus gitleaks; the single required check is **CI OK**.
+Run `just pre-push` locally *before pushing*, not just before committing —
+a red CI roundtrip costs more than the local check (the hook enforces this).
+
+Lint policy (enforced, not aspirational): `clippy::unwrap_used` is **denied**
+workspace-wide — a per-site `#[allow]` needs a WHY comment; tests are exempt
+(`clippy.toml`). `expect_used`/`panic`/`todo`/`dbg!`/`print*` warn locally
+and fail CI via `-D warnings`. The toolchain is pinned in
+`rust-toolchain.toml`; supply-chain gates live in `deny.toml` (permissive
+licenses only — closed-source app).
 
 ## Architecture (Non-Negotiables)
 
