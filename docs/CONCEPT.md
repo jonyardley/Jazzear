@@ -1,4 +1,4 @@
-# Changes — a touch-driven jazz ear trainer (working title)
+# Changes — a touch-driven jazz ear trainer
 
 *A functional-first jazz ear training app for iOS with a Crux (Rust) core, designed around commute-length, audio-first sessions. Concept v0.1, 2026-07-07.*
 

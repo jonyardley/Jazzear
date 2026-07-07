@@ -50,14 +50,14 @@ with Phase 2 content. Build the frame once; content types plug in.
    ambiguous for some item types, the fix is better per-type reveal design —
    **never voice audio of any kind**; the earlier pre-recorded-human-clip
    fallback idea is rejected (stakeholder decision, 2026-07-07).
-6. **SRS: FSRS-style scheduler in `jazzear-core`.** Evaluate `fsrs-rs` (the
+6. **SRS: FSRS-style scheduler in `changes-core`.** Evaluate `fsrs-rs` (the
    Anki implementation) first — **check its license fits a paid closed-source
    app before adopting**; otherwise implement SM-2 behind the same trait so
    the scheduler can be swapped without touching callers.
 7. **Fonts: bundle Space Grotesk + Newsreader** (both SIL OFL — bundling in a
    paid app is fine, keep the OFL notices). "Machine speaks grotesque, music
-   speaks serif" is a token-level rule: `JazzearFont.ui*` vs
-   `JazzearFont.music*`.
+   speaks serif" is a token-level rule: `ChangesFont.ui*` vs
+   `ChangesFont.music*`.
 8. **Timings are config data, not constants in code.** The prototype's values
    (context 3.6s, question 2.6s, gap 2–8s default 4s, auto-continue 5.2s,
    compare alternation 1.7s) live in one core `SessionTiming` struct so
@@ -80,11 +80,11 @@ with Phase 2 content. Build the frame once; content types plug in.
 ## Milestones (each ≈ one PR-sized chunk; sequential unless noted)
 
 ### M0 — Scaffold
-Workspace (`jazzear-core`, `jazzear-ffi`), xcodegen iOS project, justfile
+Workspace (`changes-core`, `changes-ffi`), xcodegen iOS project, justfile
 (`just ios`, `ios-run`, `ios-gen`, `ios-logs` mirroring intrada), CI
 (fmt/clippy/test + iOS build), `Theme.swift` with the full handoff token sheet
-(`JazzearColor` incl. quality/tension/mastery ramps, `JazzearFont`,
-`JazzearSpacing` 28px screen pad / 20–22 radius / 99 pill, glow styles),
+(`ChangesColor` incl. quality/tension/mastery ramps, `ChangesFont`,
+`ChangesSpacing` 28px screen pad / 20–22 radius / 99 pill, glow styles),
 bundled fonts. Bindings pipeline proven with a walking-skeleton
 `Event::Ping → ViewModel`.
 
