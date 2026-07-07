@@ -1,4 +1,4 @@
-# Design Brief — "Changes" (working title)
+# Design Brief — "Changes"
 
 *A touch-driven, audio-first jazz ear training app for iOS. Brief for design exploration / journey mockups, v0.1 — 2026-07-07.*
 

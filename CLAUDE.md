@@ -1,4 +1,4 @@
-# Jazzear Development Guidelines
+# Changes Development Guidelines
 
 > Last reviewed: 2026-07-07.
 
@@ -24,7 +24,7 @@
 
 ## Project Overview
 
-Jazzear ("Changes" is the product working title) is a **touch-driven,
+Changes (repo formerly named "Jazzear", renamed 2026-07-07) is a **touch-driven,
 audio-first jazz ear training app for iOS**. It trains functional hearing —
 notes against a key center, jazz chord qualities via decomposition (bass →
 3rd → 7th → colors), guide tones, and progression cells — in short, short
@@ -67,19 +67,19 @@ illustration — but the prototype's pacing (timed thinking gap,
 auto-continue) and its lock-screen/earbud layer are superseded by the
 manual, foreground-first decisions (see the README's banner).
 The active implementation plan is `docs/specs/mvp-plan.md`. Design tokens
-map 1:1 into `Theme.swift` (`Jazzear*` namespaces) at scaffold time.
+map 1:1 into `Theme.swift` (`Changes*` namespaces) at scaffold time.
 
 ## Project Structure (planned)
 
 ```text
 crates/
-  jazzear-core/          # Pure Crux core — ALL logic, no I/O:
+  changes-core/          # Pure Crux core — ALL logic, no I/O:
                          #   theory engine (keys, chords, voicings, cells)
                          #   exercise generator, session state machine
                          #   SRS scheduler, grading, pitch analysis
-  jazzear-ffi/           # UniFFI / typegen bridge crate
+  changes-ffi/           # UniFFI / typegen bridge crate
 ios/                     # SwiftUI shell (Xcode project via xcodegen)
-  Jazzear/               #   app source; generated bindings under ios/generated/
+  Changes/               #   app source; generated bindings under ios/generated/
 design/                  # Claude Design mockups + design system reference
 docs/                    # Product docs: CONCEPT, RESEARCH, DESIGN_BRIEF, roadmap
 ```
@@ -124,13 +124,13 @@ a red CI roundtrip costs more than the local check.
 ### Crux capabilities pattern
 
 ```text
-User/Audio/MIDI → Events → jazzear-core (Rust) → Effects (PlayScore,
+User/Audio/MIDI → Events → changes-core (Rust) → Effects (PlayScore,
                                             Storage, Render, …) → Shell → I/O
 ```
 
 1. **Core owns ALL logic.** Music theory, exercise generation, session
    choreography, SRS scheduling, answer grading, pitch analysis. If you're
-   tempted to write logic in Swift, it belongs in `jazzear-core` as an
+   tempted to write logic in Swift, it belongs in `changes-core` as an
    `Event`/`Command`.
 2. **Shells are dumb pipes.** The Swift shell renders `ViewModel`, sends
    `Event`s, and fulfils effects: realize a `PlayScore` with the sampler,
@@ -182,7 +182,7 @@ door open:
   UI surface; never fire a success haptic or dismiss a sheet before the core
   confirms.
 - **Spacing, radius, colour, type are tokens, not literals** — a `Theme.swift`
-  with `Jazzear*` token namespaces, from the first screen.
+  with `Changes*` token namespaces, from the first screen.
 - **Quality is per-screen, not deferred**: snapshot test, VoiceOver labels,
   Dynamic Type with each screen. (A screen-off/locked-phone pass joins this
   list if/when the deferred pocket mode is built.)
@@ -235,7 +235,7 @@ get the same treatment. Two-line cap as a smell test: longer usually means
 
 ## Project-specific gotchas
 
-Seeded from intrada scar tissue (same stack); grow this list as Jazzear earns
+Seeded from intrada scar tissue (same stack); grow this list as Changes earns
 its own.
 
 ### JSON-only serde attrs break the Crux bincode FFI bridge
