@@ -1,10 +1,10 @@
-# Changes — a hands-free jazz ear trainer (working title)
+# Changes — a touch-driven jazz ear trainer (working title)
 
 *A functional-first jazz ear training app for iOS with a Crux (Rust) core, designed around commute-length, audio-first sessions. Concept v0.1, 2026-07-07.*
 
 ## The one-liner
 
-**Sonofield's hands-free UX × Toned Ear's progression training × Coker's jazz progression cells × real spaced repetition** — the app that trains a jazz pianist to hear changes, on the train, with just headphones.
+**Sonofield's pocket-simple UX × Toned Ear's progression training × Coker's jazz progression cells × real spaced repetition** — the app that trains a jazz pianist to hear changes, on the train, with headphones and a thumb.
 
 ## Why this app (from the research)
 
@@ -14,7 +14,7 @@
 
 ## Design principles
 
-1. **Audio-first, screen-optional.** Every exercise must be completable with headphones only. The screen is an enhancement, never a requirement.
+1. **Audio-first — and audio is output-only.** "Audio-first" means the *content* is sound: music plays (cadences, chords, examples) — the app never speaks and never listens. All input is touch on the screen. No TTS, no voice commands, no speech recognition — no voice audio of any kind (the pre-recorded-clip fallback idea was rejected 2026-07-07). *(A screen-optional hands-free mode is a deferred exploration — see principle 9.)*
 2. **Functional over intervallic.** Everything is heard against a key center (cadence or drone establishes it). No "name this interval" out of context.
 3. **Decomposition over flashcards.** Chord exercises teach the jazz listening method: bass → 3rd → 7th → colors.
 4. **Chunks linked to tunes.** Every progression cell is anchored to named standards ("this is the 'Lady Bird' turnaround").
@@ -22,16 +22,19 @@
 6. **Honest gamification.** Streak = minutes of real work; rewards weight hard items and production (playing back at the instrument); SRS resurfaces weak items on decay curves.
 7. **Jazz texture.** Rootless voicings, shells, swing feel, ride patterns — not root-position block piano.
 8. **Sound before sign.** Musical visualizations (mini keyboard diagrams for voicings, guide-tone contour lines, lead-sheet bars in the Tune Workbench) appear only at the answer reveal and in review screens — never during listening/answering, which would invite reading over hearing. No engraved staff notation anywhere in the app.
+9. **User-paced — every step is a tap.** Tap to start an item, tap to reveal the answer (the thinking gap is open-ended — no timer), tap to grade; the grade tap doubles as "next". Auto-paced flow (timed reveal, auto-continue, passive shadow mode) and the hands-free pocket variant that depends on it (locked phone, earbud taps, lock-screen controls) are one bundled post-MVP exploration — not in the initial build.
 
 ## Core modes / user journeys
 
-### 1. Pocket Session (the flagship — hands-free commute mode)
+### 1. Pocket Session (the flagship session loop)
 
-Phone in pocket, headphones in. An auto-paced audio loop:
+Phone in hand, headphones in. A **user-paced** audio loop — every step is a
+deliberate screen tap; nothing auto-advances and nothing is timed against
+you:
 
 1. Session opens with today's SRS queue + current-rung material (10/15/20 min, user-set).
-2. Each item: **context** (cadence or drone in a random key) → **question audio** (a note, chord, guide-tone line, or 2–8 bar progression in combo texture) → **thinking gap** (configurable) → **aural reveal**: the answer is communicated in sound, not speech — a degree resolves stepwise to the tonic (the Benbassat move; the resolution path names the note), a chord replays as its decomposition arpeggio (bass → 3rd → 7th → color — the very listening method being taught). The lock-screen title updates ("It was: ♭3") for a pocket-glance confirmation. No text-to-speech anywhere.
-3. Self-report via minimal input: earbud tap / raise-to-speak "got it" vs "missed it", or fully passive "shadow mode" (no grading, pure exposure — for the crowded-train days).
+2. Each item: **context** (cadence or drone in a random key) → **question audio** (a note, chord, guide-tone line, or 2–8 bar progression in combo texture) → **thinking gap** (open-ended — the reveal waits for your tap) → **aural reveal**: the answer is communicated in sound and on screen, never in speech — a degree resolves stepwise to the tonic (the Benbassat move; the resolution path names the note), a chord replays as its decomposition arpeggio (bass → 3rd → 7th → color — the very listening method being taught), and the answer appears on screen. No text-to-speech anywhere.
+3. Self-report via on-screen tap zones: "got it" vs "missed it" — the grade tap doubles as "next" (manual progression). No voice commands. *(Earbud-tap grading and a fully passive "shadow mode" are deferred post-MVP along with all auto-pacing.)*
 4. On a miss: the Banacos loop — alternate the answer with the context, or A/B the two qualities you confuse, before moving on.
 5. Session ends with a 30-second recap: what's due tomorrow, what rung progress was made.
 
@@ -104,7 +107,7 @@ Progression is gated by SRS mastery, not XP. Users can place-test past early run
 │    voice-leading generator (guide tones)    │
 │  • Exercise generator: rung + SRS queue →   │
 │    concrete score (notes, timing, key)      │
-│  • Session state machine (auto-paced        │
+│  • Session state machine (user-paced        │
 │    Pocket flow, Banacos error loop)         │
 │  • SRS scheduler (FSRS-style decay model)   │
 │  • Played-answer grading (MIDI events;      │
@@ -115,6 +118,7 @@ Progression is gated by SRS mastery, not XP. Users can place-test past early run
 
 - Core is pure and platform-free: exercise = deterministic function of (rung, SRS state, RNG seed) → fully testable in Rust, no simulator needed.
 - Audio out as an effect: core emits `PlayScore(events)` — shell realizes it with a sampler. Core never touches an audio API.
+- The shell's earbud/remote-command and background-audio/lock-screen duties shown above belong to the deferred pocket mode, not the MVP (foreground-first, 2026-07-07).
 - Pitch detection in Rust keeps grading logic testable and portable (Android/web shells later get it free).
 - Everything offline; no accounts, no server. One-time purchase positioning.
 
@@ -125,10 +129,14 @@ Progression is gated by SRS mastery, not XP. Users can place-test past early run
 
 ## Build phases
 
-1. **MVP:** Core theory engine + Levels 0–2 + Pocket Session (hands-free loop, aural reveal, earbud-tap grading) + SRS. *This alone already beats Functional Ear Trainer + Sonofield for a jazz user.*
+1. **MVP:** Core theory engine + Levels 0–2 + Pocket Session (foreground, tap-paced loop — tap to start / reveal / grade; aural + on-screen reveal) + SRS. *This alone already beats Functional Ear Trainer + Sonofield for a jazz user.*
 2. **Harmony:** Levels 4–5 (chord decomposition, guide tones, ii-V-I) with jazz voicing textures.
 3. **Cells & tunes:** Level 6 + Tune Workbench (needs a small standards/changes dataset).
 4. **Instrument I/O:** MIDI (Bluetooth/USB) call & response and
    play-what-you-hear at the piano; Level 3 phrase echo grading.
 5. **Piano companion, expanded:** acoustic-instrument note detection on mic
    buffers; Level 7 voicing identification + reproduction.
+6. **Pocket mode (deferred exploration, no committed slot):** the hands-free
+   variant — auto-pacing, background audio, lock screen / Now Playing / Live
+   Activity, earbud-tap control, shadow mode. Revisit only after the manual
+   foreground loop is dogfooded.

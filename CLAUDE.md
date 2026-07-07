@@ -16,24 +16,41 @@
 > file has a bug — fix it.
 >
 > One superseded-docs note: `design/README.md` is a historical handoff record
-> and still mentions spoken answers; **voice I/O (TTS + sung grading) was cut
-> 2026-07** — `docs/specs/mvp-plan.md` decision 5 is authoritative (aural
-> reveal + Now Playing title instead).
+> and still mentions spoken answers, auto-pacing, and the lock-screen layer;
+> **voice I/O was cut 2026-07, and auto-pacing + the hands-free pocket layer
+> were deferred 2026-07-07** — `docs/specs/mvp-plan.md` decisions 5, 9, 10
+> are authoritative (aural reveal + on-screen answer; tap-paced; foreground
+> only).
 
 ## Project Overview
 
-Jazzear ("Changes" is the product working title) is a **hands-free jazz ear
-training app for iOS**. It trains functional hearing — notes against a key
-center, jazz chord qualities via decomposition (bass → 3rd → 7th → colors),
-guide tones, and progression cells — in short, audio-first sessions designed
-for a commute (phone in pocket, headphones on). A spaced-repetition engine
-drives what the user practices each day.
+Jazzear ("Changes" is the product working title) is a **touch-driven,
+audio-first jazz ear training app for iOS**. It trains functional hearing —
+notes against a key center, jazz chord qualities via decomposition (bass →
+3rd → 7th → colors), guide tones, and progression cells — in short, short
+audio-first sessions for found time (commute, sofa), screen in hand,
+headphones on. A spaced-repetition engine drives what the user practices
+each day. A hands-free "pocket mode" (locked phone, earbud taps,
+auto-pacing) is a deferred post-MVP exploration, not part of the initial
+build.
 
 **Product principles** (full rationale in `docs/CONCEPT.md` and
 `docs/RESEARCH.md`):
 
-- **Audio-first, screen-optional.** Every core exercise must be completable
-  with headphones only. Lock screen / Dynamic Island is a primary UI.
+- **Audio-first — audio is OUTPUT ONLY.** Music (cadences, chords, examples)
+  plays out; the app never speaks and never listens. ALL input is touch on
+  the screen. No TTS, no voice commands, no speech recognition — in any
+  form, ever (the pre-recorded-voice-clip fallback idea was rejected
+  2026-07-07).
+- **User-paced — manual pacing (2026-07 decision).** Nothing happens without
+  a deliberate tap: tap to start an item, tap to reveal the answer (the
+  thinking gap is open-ended — no timer), tap to grade (the grade tap
+  doubles as "next"). Auto-paced flow (timed reveal, auto-continue, passive
+  "shadow mode") is deferred post-MVP — do NOT implement it initially.
+- **Foreground-first MVP (2026-07 decision).** Used screen in hand. The
+  hands-free "pocket mode" layer — background audio, lock screen / Now
+  Playing / Live Activity, earbud remote commands — is one bundled deferral
+  with auto-pacing; don't build any of it initially.
 - **Functional over intervallic.** Sounds are always heard against an
   established key context (cadence/drone). No acontextual interval quizzing.
 - **Errors are the curriculum.** A miss triggers comparison-replay (the
@@ -45,7 +62,10 @@ drives what the user practices each day.
 The design brief for the UX is `docs/DESIGN_BRIEF.md`. **The design reference
 is `design/`** (Claude Design handoff — direction 1a "Blue Hour Console"):
 `design/README.md` carries the token sheet, screen inventory, and the Pocket
-Session state machine whose timings are **product spec**, not illustration.
+Session state machine whose *playback* timings are **product spec**, not
+illustration — but the prototype's pacing (timed thinking gap,
+auto-continue) and its lock-screen/earbud layer are superseded by the
+manual, foreground-first decisions (see the README's banner).
 The active implementation plan is `docs/specs/mvp-plan.md`. Design tokens
 map 1:1 into `Theme.swift` (`Jazzear*` namespaces) at scaffold time.
 
@@ -76,8 +96,8 @@ docs/                    # Product docs: CONCEPT, RESEARCH, DESIGN_BRIEF, roadma
   events for played-answer grading; later, `AVAudioEngine` mic tap → raw
   buffers → core-side note detection for acoustic pianos. **No voice I/O in
   either direction** — no TTS, no sung-answer grading (decision 2026-07);
-  the eyes-free answer reveal is aural (resolution / decomposition playback)
-  plus the Now Playing title
+  the answer reveal is aural (resolution / decomposition playback) plus the
+  on-screen answer
 - **Persistence**: GRDB (SQLite) executing typed storage effects; `crux_kv`
   for small singletons only
 - **Task runner**: `just` (mirror intrada's justfile recipes: `just ios`,
@@ -164,9 +184,8 @@ door open:
 - **Spacing, radius, colour, type are tokens, not literals** — a `Theme.swift`
   with `Jazzear*` token namespaces, from the first screen.
 - **Quality is per-screen, not deferred**: snapshot test, VoiceOver labels,
-  Dynamic Type with each screen — plus, for this app, **a
-  screen-off/locked-phone pass**: every Pocket Session interaction must be
-  verified with the display off.
+  Dynamic Type with each screen. (A screen-off/locked-phone pass joins this
+  list if/when the deferred pocket mode is built.)
 
 ## Code Style
 
@@ -205,8 +224,9 @@ get the same treatment. Two-line cap as a smell test: longer usually means
   #846). Extend the round-trip helper to every `Event`/`Effect`/`ViewModel`
   payload before it's wired to a screen.
 - **Audio choreography** is tested at the effect level: given a session plan,
-  assert the sequence/timing of emitted `PlayScore`/`Speak` effects — no
-  simulator or real audio needed.
+  assert the sequence/timing of emitted `PlayScore`/timer effects — no
+  simulator or real audio needed. (There is no `Speak` effect and never will
+  be — no voice I/O.)
 - Snapshot tests per screen once UI lands (one pinned device + scale,
   load-bearing states only, optimize PNGs before committing — see intrada's
   snapshot hygiene rules if the suite grows).
@@ -244,13 +264,18 @@ values.
 
 ### Audio-specific traps to respect from day one
 
-- **Audio session category/options are load-bearing**: Pocket Sessions need
-  `.playback` with background audio entitlement, correct interruption + route
-  change handling (headphones unplugged on a train = auto-pause, not blast
-  from the speaker).
-- **No TTS is a product decision, not an omission** (2026-07). Don't
-  reintroduce `AVSpeechSynthesizer` for "quick" announcements — the answer
-  reveal is aural playback + Now Playing title by design.
+- **Audio session category/options are load-bearing**: use `.playback` so
+  sessions sound with the ring/silent switch on silent, and get interruption
+  + route change handling right (headphones unplugged on a train =
+  auto-pause, not blast from the speaker). Background-audio entitlement and
+  lock-screen controls arrive with the deferred pocket mode, not the MVP.
+- **No voice interface is a product decision, not an omission** (2026-07).
+  Audio is output-only music — no voice audio of any kind, not even
+  pre-recorded clips (rejected 2026-07-07); every input is a touch on the
+  screen. Don't reintroduce `AVSpeechSynthesizer` for "quick"
+  announcements, and don't add `SFSpeechRecognizer`/Siri intents for
+  "convenient" voice control — the answer reveal is aural playback + Now
+  Playing title by design.
 
 ## Workflow
 

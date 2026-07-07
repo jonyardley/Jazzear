@@ -1,5 +1,26 @@
 # Handoff: "Changes" — hands-free jazz ear trainer (iOS)
 
+> **⚠️ Superseded on voice (2026-07): this handoff predates the no-voice
+> decision.** Ignore every mention below of spoken answers, "names spoken
+> before each playback", the "spoken answers" setting, sung answers, or
+> "SAY 'SKIP'". The product has **no voice interface in either direction —
+> no voice audio of any kind** (the pre-recorded-clip fallback idea was
+> also rejected 2026-07-07): audio is output-only music (cadences, chords,
+> examples); all input is touch on the screen. No TTS, no speech
+> recognition, no voice commands. Authoritative source:
+> `docs/specs/mvp-plan.md` decision 5.
+>
+> **Also superseded: auto-pacing and the pocket/lock-screen layer
+> (2026-07-07).** The prototype auto-advances (timed thinking gap,
+> auto-continue); the product is **manually paced** — tap to start an item,
+> tap to reveal (the gap is open-ended; no countdown), tap to grade (the
+> grade tap doubles as "next"). And the MVP is **foreground-first**: shadow
+> mode, auto-continue, the thinking-gap timer, and the entire hands-free
+> layer (lock screen / Now Playing / Dynamic Island, earbud-tap input) are
+> deferred post-MVP as one bundle ("pocket mode"). Playback timings
+> (context, question, reveal, compare alternation) remain product spec.
+> Authoritative source: `docs/specs/mvp-plan.md` decisions 9–10.
+
 ## Overview
 
 Design pass for **Changes**, an iOS app that trains a jazz pianist's ear on the commute: functional-first pedagogy (everything heard against a key center), auto-paced audio sessions usable with the phone in a pocket, spaced repetition, and error-driven comparison loops. This package covers the chosen visual direction ("Blue Hour Console"), the full Pocket Session state set, onboarding/placement, progress surfaces, Tune Workbench (med-fi), Call & Response (concept), and a working choreography prototype with synthesized audio.
