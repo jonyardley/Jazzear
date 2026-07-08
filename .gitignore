@@ -19,6 +19,7 @@ xcuserdata/
 # Generated bindings — build output, never source (CLAUDE.md: bindings are a
 # build precondition; regenerate, don't hand-edit or commit)
 ios/generated/
+crates/changes-ffi/generated/
 
 # Environment
 .env
