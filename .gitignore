@@ -5,9 +5,10 @@
 /target/
 **/*.rs.bk
 
-# Xcode
+# Xcode (the project itself is xcodegen output — `just ios` regenerates it)
 ios/build/
 ios/DerivedData/
+ios/*.xcodeproj/
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcuserdata/
 xcuserdata/
@@ -18,6 +19,7 @@ xcuserdata/
 # Generated bindings — build output, never source (CLAUDE.md: bindings are a
 # build precondition; regenerate, don't hand-edit or commit)
 ios/generated/
+crates/changes-ffi/generated/
 
 # Environment
 .env
