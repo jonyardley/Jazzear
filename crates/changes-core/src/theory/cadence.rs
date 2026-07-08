@@ -74,7 +74,10 @@ mod tests {
         let key = Key::new(PitchClass::C, Mode::Minor);
         let [ii, five, one] = two_five_one(key);
         // iiø over C minor: D F A♭ C.
-        assert_eq!(ii.iter().map(|n| n % 12).collect::<Vec<_>>(), vec![2, 5, 8, 0]);
+        assert_eq!(
+            ii.iter().map(|n| n % 12).collect::<Vec<_>>(),
+            vec![2, 5, 8, 0]
+        );
         // V7: D F G B — leading tone present.
         assert!(five.iter().any(|n| n % 12 == 11));
         // i m7: C E♭ G B♭ — minor third present.

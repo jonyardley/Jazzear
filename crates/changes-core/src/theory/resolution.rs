@@ -46,10 +46,7 @@ pub fn resolution_path(key: Key, start: Degree) -> Vec<Degree> {
     }
 
     // Walk scale positions to the tonic (position 7 ≡ upper Do, 0 ≡ Do).
-    let mut position = scale
-        .iter()
-        .position(|&s| s == current)
-        .unwrap_or_default() as i8;
+    let mut position = scale.iter().position(|&s| s == current).unwrap_or_default() as i8;
     loop {
         position += if upward { 1 } else { -1 };
         if !(1..=6).contains(&position) {
